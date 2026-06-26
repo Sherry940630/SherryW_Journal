@@ -1,0 +1,33 @@
+<h2>
+    <a href="https://zerojudge.tw/ShowProblem?problemid=a006">
+        a006.一元二次方程式
+    </a>
+</h2>
+
+
+<div class="problem-desc">
+    <p>
+    求一元二次方程式 ax²+bx+c=0 的根，
+    每次輸入為三個整數a, b, c，
+    輸出時大根在前面。
+</p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        ➀ 因為不知道它會輸入多少筆測資，所以使用while(cin&gt;&gt;)，這樣每次執行完畢若再輸入，就會重跑一遍迴圈並清除上一筆輸入資料。<br>
+        ➁ 先把x1, x2代入公式解，接下來的判斷式會分別判斷「無實數解」、「異根但x1&gt;x2」、「異根但x1&lt;x2」、「重根」的情況。<br>
+        ➂ 用到了sqrt()開根號的函式，這不在標準函式庫，標頭要include &lt;math.h&gt;。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a006.png" width=100%>
+    <h3>【失敗過程】</h3>
+    <p>
+        我一開始不知道判斷式連續用兩次==不能讓它比較三筆運算結果是否相同，chatGPT說這樣它會先判斷前兩筆是否相同，並將判斷結果的true或false(0或1)拿去判斷是否與下一筆運算結果相同。<br><br>
+        我知道算數運算子 > 比較運算子 > 邏輯運算子，但我不知道「優先順序相同時，是從左至右運算的」而不是同時進行。<br><br>
+        於是我意識到我連基本的運算子先後順序都不清楚。
+    </p>
+</div>

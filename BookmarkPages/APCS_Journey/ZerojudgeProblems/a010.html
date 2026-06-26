@@ -1,0 +1,30 @@
+<h2>a010.因數分解</h2>
+
+<div class="problem-desc">
+    <p>
+    因數分解輸入的值，如 12=2^2 * 3。次方的符號以 ^ 來表示。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        <h3>〔計算因數分解〕</h3><br>
+        ➀ <strong>用map容器儲存質因數(key)與對應的次方(value)。</strong><br>
+        ➁ 數字只分為偶數（可以被2整除）和奇數（只能被奇數整除），所以只需要<strong>兩個迴圈就可以處理所有因數</strong>──while迴圈執行n為偶數的情況，把n除以2後在map裡的2的key增加一個值；處理奇數因數的for迴圈則是以步長2從3跑到√n（同a.121：因為再往上的因數都會是跟比它小的數字相乘）做一樣的事。<br>
+        ➂ 如果以上這些做完後，n還大於2，代表它現在還剩一個質數，那就在map裡儲存一個它自己。<br>
+        <h3>〔列印結果〕</h3><br>
+        ➀ <strong>從map的第一個元素跑到最後一個後面的for迴圈</strong>。用布林代數firstFactor表示目前列印的是否為第一個因數，如果不是的話才要待會才要印出乘號。<br>
+        ➁ k->first代表的是map裡第這一格元素的key(此指質因數)；k->second則表示這格元素的值(此指質因數次方)，若次方大於1才要印出。<br><hr>
+        補充：Hashmap與map的差別在我寫LeetCode第一題時有註解。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a010_1.png" width=100%>
+    <img src="images/APCS_Codes/ZerojudgeCodes/a010_2.png" width=100%>
+    <h3>【失敗過程與心得】</h3>
+    <p>
+        因為我以為第10題應該會很簡單所以我沒看清楚題目就開始做，只做到乘法，沒看到要用次方符號，瘋了。我在這題花了一個多小時，因為學校沒教過map或vector所以我對它們的概念非常模糊。
+    </p>
+</div>

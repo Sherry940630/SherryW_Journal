@@ -1,0 +1,30 @@
+<h2>35.Search Insert Position</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入一列由小到大排好的數字和一個索引值target，你要在輸出target是該列第幾個數字。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br>
+        <h3>〔理論〕</h3><br>
+        ➀ 如果我在1~100中隨便想一個數字，你要猜我想的是哪個數字，猜錯的話我會告訴你正確答案比這更大或更小，最有效率的方法是不是先猜50，如果更大就猜75，如果更小就猜62？<strong>一直切中間的數字就是二分搜尋法。</strong><br>
+        ➁ 在這個題目當中，我們會設小的數字為left，大的為right，中間為mid。<br>
+        ➂ 如果切中間切到猜中了，就將其輸出，否則看看它是比target大還是小，再切。
+        <h3>〔執行函式〕</h3><br>
+        Line18→ 是如果找不到索引值就將它在該列會插入的位置輸出，那行是chatGPT加的，實際上測資不會有找不到的情況。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc35.png" width=100%>
+    <h3>【補充】</h3>
+    <p>
+        <h3>〔Time Complexity〕</h3><br>
+        我知道沒有人會看，我只是做筆記用的。
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc35_TimeComplexity.png" width=100%>
+    </p>
+</div>

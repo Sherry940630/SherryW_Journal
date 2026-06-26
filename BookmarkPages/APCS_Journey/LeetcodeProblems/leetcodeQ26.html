@@ -1,0 +1,27 @@
+<h2>26.Remove Duplicates from Sorted Array</h2>
+
+<div class="problem-desc">
+    <p>
+    給一列由小到大的數字，扣掉重複數字後裡面的數字只有k個，請輸出陣列前k項並且不得有數字重複。數列順序不得更改。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br>
+        <h3>〔雙指標演算法(Two-Pointer Algorithm)〕</h3><br>
+        我們會有一個fast指標和slow指標（圖中分別以橘色與藍色表示），fast在每次迴圈都會+1，<strong>而slow只有在它指向的值（n[slow]）與fast指向的值（n[fast]）不同時才會+1</strong>，每次迴圈最後一步都會<strong>將n[slow]更新成n[fast]</strong>。<br>
+        這樣就可以把獨特的數字都丟到數列最前面。
+        <h3>〔執行函式〕</h3><br>
+        ➀ Line5→ slow要從數列第一項起始。<br>
+        ➁ Line6→ fast永遠會在slow的前面。<br>
+        ➂ Line8~9→ 若n[slow]與n[fast]不同，將slow往前移。<br>
+        ➃ Line10→ 將n[slow]更新成n[fast]。<br>
+        ➄ Line12→ 0~slow+1項都會是不重複的，所以傳回slow+1。陣列本體不需回傳，judge會自己去抓。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc26.png" width=100%>
+</div>

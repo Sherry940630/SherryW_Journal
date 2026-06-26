@@ -1,0 +1,42 @@
+<h2>70.Climbing Stairs</h2>
+
+<div class="problem-desc">
+    <p>
+    樓梯有n階，你一次可以爬1階或2階。請問有多少種你可以爬完n階樓梯的方式？
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br>
+        <h3>〔分析組合數〕</h3><br>
+        以下整串都是留言區抓的圖片<a href="https://leetcode.com/problems/climbing-stairs/description/comments/1570512">（圖源）</a>。
+        如果只有1階或2階，那就只有1種或2種爬法。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc70_StairTheory1.png" width=100%><br>
+        如下圖，如果有3階，因為我們第一階都只能跨1或2步，代表跨了第一步以後只會剩下2階（n=2情形）或1階（n=1情形），我們將n=2情形與n=1情形的狀況加起來，就會是n=3的組合數：也就是2+1=3。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc70_StairTheory2.png" width=100%><br>
+        如下圖，如果有4階，我們第一階只能跨1或2步，就會剩下3階或2階，代表n=4的組合數是n=3加上n=2的組合數：3+2=5。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc70_StairTheory3.png" width=100%><br>
+        你會發現，<strong>n階的組合數其實就是n-1階組合數加上n-2階組合數</strong>，也就是<strong>費式數列</strong>。
+        <h3>〔分析程式步驟〕</h3><br>
+        下圖是我請chatGPT列印的表格，假設你要爬5階的樓梯，你會發現從第4階開始，爬它前2階的組合數就是上一行爬它前一階的組合數，然後爬它最後一階的組合數就是上一行總共的組合數。所以我們的for迴圈只要從3開始，且須將組合數加總後再做上面所述的調換動作。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc70_StepBreakdown.png" width=100%><br>
+        <h3>〔分析程式步驟〕</h3><br>
+        ➀ Line6→我發現1~3階的組合數量剛好都跟階數一樣，所以我讓它們直接輸出。<br>
+        ➁ Line11→curr是爬到該階的總組合數。<br>
+        ➂ Line12~13→在做上面理論解釋的調換動作。<br>
+        ➃ Line15→因為我們的curr是for迴圈內的區域變數，但傳回指令在迴圈外，所以我把最後一步輸出，反正我們迴圈最後都會把curr存進laststep裡面，所以其實是一樣的。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc70.png" width=100%>
+    <h3>【程式碼（暴力法）】</h3>
+    <p>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc70_ViolentSol.png" width=100%>
+        因為題目說階數只會是1~45階，所以你也可以寫45行if/else。執行速度不會比較慢，因為程式一行一行照順序執行其實會比迴圈跳來跳去還要快。然而使用記憶體就會稍微多一點（7.93MB），下圖是我們用迴圈來寫所佔的記憶體（7.82MB）。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc70_Analysis2.png" width=100%><br>
+        對我知道這樣寫會花15分鐘而且完全沒有訓練意義，但我就好奇可不可以真的這樣做，基於某種喜劇效果。
+    </p>
+</div>

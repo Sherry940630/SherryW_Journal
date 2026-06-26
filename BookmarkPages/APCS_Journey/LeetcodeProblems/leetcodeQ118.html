@@ -1,0 +1,25 @@
+<h2>118.Pascal's Triangle</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入一個數字n，回傳前n行的巴斯卡三角形。
+    下圖為巴斯卡三角形示意圖。
+    <img src="images/APCS_Codes/LeetcodeCodes/PascalsTriangle.png" width=100%>
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br><br>
+        ➀ Line6~7→先創造出他要的行數，然後全部的元素預設為1（示意圖如下）。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc118_Step1.png" width=100%>
+        ➁ Line9~10→ 因為邊邊都是1，所以我們計算每行中間的元素就好了（讓迴圈從1開始，因為0是第1個元素的索引），然後它們的值會是[i-1, j-1]+[i-1, j]（示意圖如下）。<br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc118_Step2.png" width=100%>
+        ➂ Line13→把這個vector丟進儲存結果的vector。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc118.png" width=100%>
+</div>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>王之諠的學習歷程</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="book">
+        <img class="book-bg" src="images/Assets/BookBase.png" alt="book">
+
+
+        <div class="book-ui">
+        <div class="page left" id="leftPage">
+        </div>
+
+        <div class="spine">
+            <!--書脊-->
+        </div>
+
+        <div class="page right" id="rightPage">
+        </div>
+
+        <div class="tabs">
+            <div class="tab-group">
+                <button class="tab main-tab"
+                    onclick="loadPage(
+                        'BookmarkPages/Home.html',
+                        '#home-left',
+                        '#home-right'
+                    )">
+                    主頁
+                </button>
+            </div>
+            
+            <div class="tab-group">
+                <button class="tab main-tab">Unity專題</button>
+                <div class="sub-tabs">
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/Bell.html',
+                            '#bell-left',
+                            '#bell-right'
+                        )">
+                        Bell(專題)
+                    </a>
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/Minesweeper.html',
+                            '#minesweeper-left',
+                            '#minesweeper-right'
+                        )">
+                        學習過程
+                    </a>
+                </div>
+            </div>
+
+            <div class="tab-group">
+                <button class="tab main-tab">C++刷題</button>
+                <div class="sub-tabs">
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/Zerojudge.html',
+                            '#zerojudge-left',
+                            '#zerojudge-right'
+                        )">
+                        ZeroJudge
+                    </a>
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/Leetcode.html',
+                            '#leetcode-left',
+                            '#leetcode-right'
+                        )">
+                        LeetCode
+                    </a>
+                </div>
+            </div>
+
+            <div class="tab-group">
+                <button class="tab main-tab">網頁</button>
+                <div class="sub-tabs">
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/Portfolio.html',
+                            '#portfolio-left',
+                            '#portfolio-right'
+                        )">
+                        現在這個網站
+                    </a>
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/BeautyInLife.html',
+                            '#beauty-left',
+                            '#beauty-right'
+                        )">
+                        風景裡的小事
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="tab-group">
+                <button class="tab main-tab">大型語言模型</button>
+                <div class="sub-tabs">
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/LLM.html',
+                            '#llm-left',
+                            '#llm-right'
+                        )">
+                        Nico
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="tab-group">
+                <button class="tab main-tab">藝術創作</button>
+                <div class="sub-tabs">
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/IbispaintArtworks.html',
+                            '#ibis-left',
+                            '#ibis-right'
+                        )">
+                        Ibispaint畫畫
+                    </a>
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/BlenderArtworks.html',
+                            '#blender-left',
+                            '#blender-right'
+                        )">
+                        Blender建模
+                    </a>
+                </div>
+            </div>
+
+            <div class="tab-group">
+                <button class="tab main-tab">願景與辨思</button>
+                <div class="sub-tabs">
+                    <a href="javascript:void(0)"
+                        onclick="loadPage
+                        (
+                            'BookmarkPages/MentalGrowth.html',
+                            '#growth-left',
+                            '#growth-right'
+                        )">
+                        願景與辨思
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!---放大圖片用的-->
+    <div id="image-modal">
+        <img id="image-modal-img">
+    </div>
+
+    <script src="js/main.js" defer></script>
+
+</body>
+</html>

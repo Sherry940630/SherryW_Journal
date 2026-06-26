@@ -1,0 +1,22 @@
+<h2>a034.二進制轉換</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入十進制，輸出二進制。
+</p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        ➀ 一直把十進制的數字除以2，並把餘數從右到左列出，就會是它的二進制結果。<br>
+        ➁ 上面反著印出餘數的概念就是標準的Last In First Out，也就是堆疊資料結構（stacking），所以我們宣告一個stack容器來儲存轉換結果。<br>
+        ➂ n除到剩1時，再除以2就會小於1，因此跳出取餘數的迴圈。<br>
+        ➃ 這時若stack裡面有東西的話就可以開始輸出了。<br><hr>
+        補充：Queue (FIFO) 的介紹請見e.447。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a034.png" width=100%>
+</div>

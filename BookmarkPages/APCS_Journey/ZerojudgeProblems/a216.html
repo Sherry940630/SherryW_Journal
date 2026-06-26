@@ -1,0 +1,21 @@
+<h2>a216.數數愛明明</h2>
+
+<div class="problem-desc">
+    <p>
+    f(n) = n + f(n-1) <br>
+    g(n) = f(n) + g(n-1) <br>
+    輸入n，輸出 f(n) 與 g(n)。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        因為題目說0&lt;n&lt;=30000，所以這題用了vector把所有30000以下的數字代入後的結果都儲存至對應的位址，輸入n後再從那個n的位址抓出來輸出即可。<br>
+        Vector(向量)類似一個陣列，但它的size是動態的，較好處理龐大測資，而且可以輕鬆地把所有值都初始化。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a216.png" width=100%>
+</div>

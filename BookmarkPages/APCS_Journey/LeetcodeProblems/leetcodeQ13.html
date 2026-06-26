@@ -1,0 +1,32 @@
+<h2>13.Roman to Integer</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入羅馬數字，你要傳回十進制阿拉伯數字。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br>
+        <h3>〔理論〕</h3><br>
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc13_Theory.png" width=100%>
+        羅馬數字的規律：<br>
+        如果在相鄰兩位中，左邊那位比右邊那位小，那左邊那位是負數。<br><br>
+        ex: 6是IV，左邊那位是1，右邊那位是5，因為1 &lt; 5，所以IV = -1 + 5 = 4。
+        <h3>〔執行函式〕</h3><br>
+        ➀ Line5→用hashmap儲存每個羅馬數字對應的十進制阿拉伯數字。<br>
+        ➁ Line17→for迴圈從最左邊的數字（也就是字串第0格）開始，跑到最後一位（字串第「長度-1」格）。如果它不是最小位數（避免超出範圍出錯）且比右邊那位小，則這個數字要減它，否則為加。<br>
+        ➂ Line24→傳回值。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc13.png" width=100%>
+    <h3>【心得】</h3>
+    <p>
+        經過第一題Two Sum的hashmap洗禮後，這一題我只花了半小時，雖然速度和存取記憶都不是很完美。
+        <img src="images/APCS_Codes/LeetcodeCodes/Lc13_Analysis.png" width=100%>
+    </p>
+</div>

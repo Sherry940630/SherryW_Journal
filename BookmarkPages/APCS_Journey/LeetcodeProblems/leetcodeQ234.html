@@ -1,0 +1,28 @@
+<h2>234.Palindrome Linked List</h2>
+
+<div class="problem-desc">
+    <p>
+    判斷一個單項清單是否為回文（正著念反著念都一樣）。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br><br>
+        ➀ Line5→ 因為單向列表要搜尋值只能從頭一個一個跑，不能直接指定尾端的索引位址，所以我們直接創造一個vector把它全部複製進去。<br>
+        ➁ Line7~11→ 只要這個列表的首項不為空，就把列表當前的首項塞進我們的vector尾端，並把該列表當前的首項更改為它的下一項（注意：這麼做會丟失該列表的原始樣貌，只是在這個題目剛好不需要擔心這件事）。<br>
+        ➂ Line14~20→ 從vector最左邊(left)和最右邊(right)開始比對，每一次迴圈重新執行時left跟right都會往中間縮，只要left跟right不一樣就直接回傳false。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc234.png" width=100%>
+    <h3>【補充】</h3>
+    <p>
+        <h3>〔push_back()〕</h3><br>
+        在vector的尾端插入東西。<br>
+        <h3>〔-&gt;〕</h3><br>
+        在ListNode中是它結構的指標(pointer)，例如head-&gt;val = 10也可以被寫成(*head).val = 10。
+    </p>
+</div>

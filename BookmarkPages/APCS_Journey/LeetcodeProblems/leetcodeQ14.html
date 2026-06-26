@@ -1,0 +1,40 @@
+<h2>14.Longest Common Prefix</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入多個字串，你要找出它們最長的共同字首。<br>
+    例如輸入[flower, flow, fly, flare]，
+    正確輸出應為fl；<br>
+    若輸入[grunch, grow, grim, regret]
+    輸出則為空。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        註：那個Solution類別跟函式都是它預設給的，規定要包在這裡面。<br>
+        <h3>〔理論〕</h3><br>
+        ➀ 先把陣列第一個字串存入我們的prefix(字首)。<br>
+        ➁ 從第二個字開始與prefix做比對，如果這個字跟prefix長不一樣，就把prefix的最後一個字母砍掉，重新與之比對。<br>
+        ➂ 最後直接輸出prefix。<br>
+        ➃ 這個過程中如果prefix被清空了，直接回傳空字串。
+        <h3>〔執行函式〕</h3><br>
+        ➀ Line6→ for迴圈從vector中的第二個字串一路跑到最後一個。<br>
+        ➁ Line8→ 這句是「若strs[i]的開頭與prefix不相符」。註明：find()是一個可以搜尋子字串的函式，若在此字串strs[i]中它有找到prefix的話它回傳的是0，若無則回傳1，底下我會補充為什麼它看上去違反直覺。<br>
+        ➂ Line10→ line8條件符合才會觸發這行執行，也就是將prefix的最後一個字砍掉，以下會補充substr()函式的原理。<br>
+        ➃ Line12~13→ 這個過程中如果prefix被清空了，直接回傳空字串，結束剩餘步驟。<br>
+        ➄ Line15→ 若最後輸出prefix。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/LeetcodeCodes/Lc14.png" width=100%>
+    <h3>【補充】</h3>
+    <p>
+        <h3>〔find()函式〕</h3><br>
+        它不是一個「字串比對布林值」（aka將兩個字串進行比對，若相同則傳回true），它的工作是<strong>「子字串搜尋」</strong>。拿我們這道題目舉例，這個函式會在strs[i]中尋找是否有任何一串字元跟prefix長一樣，若有的話<strong>它傳回的是prefix的開頭在strs[i]中的第幾個位元</strong>，所以在這題如果str[i]的第一個位元就與prefix開頭相符的話，它會回傳0（因為字串與陣列的第一個位元都是0）；若prefix不在strs[i]裡面，它會回傳npos（應該是no position found之類的），而在判斷式中只要不是0的值都會被當作1，npos當然也會被當作1，然後如果prefix不在strs[i]開頭的話也會當作1。<br>
+        <h3>〔substr()函式〕</h3><br>
+        「字串.substr(開始字元, 結束字元)」會回傳開始字元到結束字元中間的所有字元。
+    </p>
+</div>

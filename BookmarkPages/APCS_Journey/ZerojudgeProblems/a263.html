@@ -1,0 +1,29 @@
+<h2>a263.日期差幾天</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入兩個日期（西元年 月 日），輸出這兩個日期差幾天。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        <h3>〔理論〕</h3><br>
+        把兩個日期與西元1年1月1日的距離都算出來後相減就會是兩者的距離，具體一點就是「今年過了多少天＋過了多少年＊年份對應的天數」。<br>
+        <h3>〔今年過了多少天 函式〕</h3><br>
+        ➀ 12個月分別對應到的天數都存入陣列daysPerMonth。<br>
+        ➁ 如果輸入年份為閨年，二月改成29天。<br>
+        ➂ 用for迴圈把已經過完的月份加總。<br>
+        ➃ 加上這個月已經經過的天數，最後傳回值還要再-1是因為那天還沒過完，假設今天是10月17號，那我這個月只過了16天而不是17天。<br>
+        <h3>〔過了多少年＊年份對應的天數 函式〕</h3><br>
+        ➀ 用for迴圈從西元1年跑到今年。<br>
+        <h3>〔主函式〕</h3><br>
+        ➀ 處理輸入與輸出。最後如果兩個年份減出來是負數的話要再*1，我忘記取絕對值的函式具體長怎樣了也懶得查所以直接那樣寫。
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a263_1.png" width=100%>
+    <img src="images/APCS_Codes/ZerojudgeCodes/a263_2.png" width=100%>
+    <img src="images/APCS_Codes/ZerojudgeCodes/a263_3.png" width=100%>
+</div>

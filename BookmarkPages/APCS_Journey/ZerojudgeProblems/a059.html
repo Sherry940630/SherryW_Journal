@@ -1,0 +1,26 @@
+<h2>
+    <a href="https://zerojudge.tw/ShowProblem?problemid=a059">
+        a059.完全平方和
+    </a>
+</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入 T、a、b 。T代表接下來會有幾組a跟b，我們要輸出 <strong>a 與 b 之間所有完全平方數的和</strong>。
+    <br>完全平方數是指開根號後會是整數的數，如4、9、16、25。
+
+</p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        ➀ 輸入T值後，就會決定我的for外迴圈要跑幾次。<br>
+        ➁ 我這裡的內迴圈是<strong>把√a與√b之間的每個整數平方</strong>後加總，因為這樣比一個一個判斷數字是不是完全平方數快多了。<br>
+        ➂ 使用了ceil()與sqrt()函數。前者ceiling天花板函數會把一個小數往上取整數，例如ceil(0.2)會是1；ceil()的兄弟是floor()，地板函數，它是往下取整數，例如floor(1.9)會是1。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a059.png" width=100%>
+</div>

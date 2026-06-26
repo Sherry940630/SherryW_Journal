@@ -1,0 +1,30 @@
+<h2>a121.質數又來囉</h2>
+
+<div class="problem-desc">
+    <p>
+    輸入兩個數字，輸出它們之間有幾個質數。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        <h3>〔質數判斷函式bool isPrime〕</h3><br>
+        ➀ 因為題目說輸入值不會是負數，所以如果輸入&lt;=1（只會是0或1）就直接傳回false（0和1不是質數）。<br>
+        ➁ 再來一個for迴圈從2跑到輸入值的根號（因為再往上的因數都會是跟比它小的數字相乘）一個個判斷會不會整除。<br>
+        <h3>〔主函式〕</h3><br>
+        ➀ 沒什麼特別的，把a~b的數字一個一個丟進質數判斷函式，出來如果是true的話質數數量(primeCount)就+1。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a121.png" width=100%>
+    <h3>【失敗過程與心得】</h3>
+    <p>
+        <img src="images/APCS_Codes/ZerojudgeCodes/a121_Fail1.png" width=100%>
+        我的質數判斷式原本這樣寫，因為我不知道函數傳回值後就不會繼續跑下去了，所以我多設一個「已經是0了」的變數（代表是否已經傳回false），return 0的時候將「已經是0了」設為1。底下再判斷如果for迴圈跑完了但「已經是0了」不是1的話再return 1。<br><br>
+        我把程式丟給chatGPT後它說我做了一堆冗餘的判斷，幫我把整個「已經是0了」的東西刪掉，直接在for迴圈結束的地方加上一句return true。<br><br>
+        我才發現只有當它一直沒有return 0的時候，才會有for loop跑完的問題。後來覺得自己蠢斃了。
+        <img src="images/APCS_Codes/ZerojudgeCodes/a121_Fail2.png" width=100%>
+    </p>
+</div>

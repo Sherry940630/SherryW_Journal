@@ -1,0 +1,25 @@
+<h2>a024.最大公因數(GCD)</h2>
+
+<div class="problem-desc">
+    <p>
+    給兩個整數，求出它們的最大公因數。
+    </p>
+</div>
+
+<div class="problem-solution">
+    <p>
+        <strong>輾轉相除法(歐幾里得算法 Euclidean Algorithm)</strong>的邏輯：
+        ➀ 如果a除以b的餘數為0，則最大公因數為b。
+        ➁ 否則，將a的質變成b，b的值變成a除以b的餘數，重複這個過程直到b=0。
+        ➂ 此時，剩下的a即為最大公因數。
+    </p>
+</div>
+
+<!--  <是&lt;      >是&gt;    -->
+<div class="problem-code">
+    <img src="images/APCS_Codes/ZerojudgeCodes/a024.png" width=100%>
+    <h3>【失敗過程】</h3>
+    <p>
+        一開始使用的是上課教的暴力法，從大的那個數字開始往下遞減，把它拿去除兩個數，看誰整除後值最大。算是算得出來，結果超過時間限制了。
+    </p>
+</div>
