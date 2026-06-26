@@ -3,6 +3,18 @@
 const leftPage = document.getElementById("leftPage");
 const rightPage = document.getElementById("rightPage");
 
+let siteData = {};
+
+// 網頁啟動時，先 fetch 這個 json
+fetch('data.json')
+    .then(response => response.json())
+    .then(data => 
+    {
+        siteData = data;
+        console.log("資料已載入:", siteData); //F12打開開發者工具可以看到這個
+    })
+    .catch(err => console.error("JSON 載入失敗:", err));
+
 document.addEventListener("DOMContentLoaded", () => 
 {
     const mainTabs = document.querySelectorAll(".main-tab");
@@ -94,30 +106,32 @@ document.addEventListener("DOMContentLoaded", () =>
     });
 });
 
-function loadPage(path, leftId, rightId) 
-{
-    fetch(path)
-        .then(res => res.text())
-        .then(html => 
-        {
-            const temp = document.createElement("div");
-            temp.innerHTML = html;
-
-            leftPage.innerHTML =
-                temp.querySelector(leftId).innerHTML;
-
-            rightPage.innerHTML =
-                temp.querySelector(rightId).innerHTML;
-
-            if (path.includes("Zerojudge")) 
-            {
-                bindZeroJudgeSelect();
-            } 
-            else if (path.includes("Leetcode")) 
-            {
-                bindLeetcodeSelect();
-            }
-        });
+// 在 main.js 中加入這個統一的處理函式
+function loadPage(pageKey, leftSelector, rightSelector) {
+    const pageData = siteData[pageKey];
+    
+    if (pageData) {
+        const leftEl = document.querySelector(leftSelector);
+        const rightEl = document.querySelector(rightSelector);
+        
+        if (leftEl && rightEl) {
+            leftEl.innerHTML = pageData.left;
+            rightEl.innerHTML = pageData.right;
+        } else {
+            console.error("找不到頁面容器，請檢查 index.html 的 ID:", leftSelector, rightSelector);
+        }
+    } else {
+        console.error("data.json 中找不到這個頁面索引:", pageKey);
+        // 如果不是 JSON 資料，嘗試當作檔案路徑載入
+        fetch(pageKey)
+            .then(res => res.text())
+            .then(html => {
+                const temp = document.createElement("div");
+                temp.innerHTML = html;
+                document.querySelector(leftSelector).innerHTML = temp.querySelector(`#${pageKey.split('/')[1].replace('.html', '')}-left`)?.innerHTML || "";
+                document.querySelector(rightSelector).innerHTML = temp.querySelector(`#${pageKey.split('/')[1].replace('.html', '')}-right`)?.innerHTML || "";
+            });
+    }
 }
 
 function loadHomePage() 

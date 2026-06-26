@@ -1,0 +1,17 @@
+{
+  "home": 
+  {
+    "left": "<h3>花蓮高工資訊科-<br>王之諠的學習歷程</h3><p>本科相關技能分布：<br><img src='images/Self/SkillChart.png' width='100%'>...</p>",
+    "right": "<h3>【重大證照】</h3>..."
+  },
+  "beauty": 
+  {
+    "left": "<h2>小事裡的風景，風景裡的小事</h2><p>國文老師每學期...</p>",
+    "right": "<h3>【遇到的挑戰】</h3>..."
+  },
+  "blender": 
+  {
+    "left": "<h2>Blender建模</h2>...",
+    "right": "<h3>甜甜圈</h3>..."
+  }
+}
