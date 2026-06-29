@@ -1,5 +1,6 @@
 ---
 import BookLayout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BookLayout>
@@ -7,8 +8,8 @@ import BookLayout from '../layouts/Layout.astro';
             <h2>The Bell Never Rings</h2>
     <p>
         下載（選一個即可）：<br>
-        <a href="releases/TheBellNeverRings_BETA3.zip">
-        <img src="images/UI/DownloadButtonPixelated.png" width=60%>
+        <a href={`${base}releases/TheBellNeverRings_BETA3.zip`}>
+        <img src={`${base}images/UI/DownloadButtonPixelated.png`} width=60%>
         </a><br>
         <a href="https://github.com/Sherry940630/TheBellNeverRings_ResuscitatedAgain/releases/tag/v0.0.2" target="_blank">
             Github Release最新版
@@ -18,7 +19,7 @@ import BookLayout from '../layouts/Layout.astro';
         </a><br>
         下載完之後請解壓縮，並開啟TheBellNeverRings.exe執行檔。
         （不是UnityCrashHandler64.exe）
-        <img src="images/OtherBellStuff/ExeDemonstration.png" width=100%>
+        <img src={`${base}images/OtherBellStuff/ExeDemonstration.png`} width=100%>
     </p>
     </div>
 
@@ -26,7 +27,7 @@ import BookLayout from '../layouts/Layout.astro';
         
     建議音量：20%<br>
     <video id="trailer" controls width=100%>
-    <source src="videos/TheBellNeverRings_BETA_Trailer_output.mp4" type="video/mp4">
+    <source src={`${base}videos/TheBellNeverRings_BETA_Trailer_output.mp4`} type="video/mp4">
     </video>
 
     <!--
@@ -82,8 +83,8 @@ import BookLayout from '../layouts/Layout.astro';
         <li>我的電擊攻擊參考了「植物大戰殭屍2」裡的「閃電蘆葦」。</li>
         <li>
             我給我朋友的蛇武器的左右擺頭動畫是參考「植物大戰殭屍」的豌豆跟向日葵。<br>
-            <img src="images/Inspiration/PvzSunflower.gif" width="50">
-            <img src="images/Inspiration/PvzPeashooter.gif" width="50">
+            <img src={`${base}images/Inspiration/PvzSunflower.gif`} width="50">
+            <img src={`${base}images/Inspiration/PvzPeashooter.gif`} width="50">
         </li>
         <li>而他的鉤子武器是因為他喜歡玩釣魚遊戲，然後我就聯想到”Minecraft”的釣竿可以當鉤子把生物鉤過來。</li>
         <li>他的血影突襲技能設計參考了「元氣騎士」與「牛奶巧克力」的刺客。</li>

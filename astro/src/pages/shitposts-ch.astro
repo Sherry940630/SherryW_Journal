@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+
+const posts = 
+[
+    { title: "廢文一則", content: "人生就是個便當。", album: "lifeUpdates", date: 20250610 },
+    { title: "好吃", content: "沒什麼好說的就是很好吃。", album: "yapping", date: 20250601 },
+];
+---
+
+<Layout>
+    <div slot="left">
+        <h3>廢文博物館</h3>
+        <p>篩選器：</p>
+
+        <label>排序方式</label><br>
+        <select id="sort-select">
+            <option value="newest">最新發布</option>
+            <option value="oldest">最舊發布</option>
+        </select>
+
+        <br><br>
+
+        <label>相簿</label><br>
+        <select id="album-select">
+            <option value="all">所有相簿</option>
+            <option value="lifeUpdates">人生更新</option>
+            <option value="yapping">真實廢文</option>
+        </select>
+    </div>
+
+    <div slot="right">
+        <div id="posts-container">
+            {posts.map(post => (
+                <div class="expand-item" data-album={post.album} data-date={post.date}>
+                    <button class="expand-btn">{post.title}</button>
+                    <div class="expand-content show">
+                        <p>{post.content}</p>
+                        <small>{String(post.date).slice(0,4)}/{String(post.date).slice(4,6)}/{String(post.date).slice(6,8)}</small>
+                        <button class="collapse-btn">▲ 縮小</button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const albumSelect = document.getElementById('album-select') as HTMLSelectElement;
+    const container = document.getElementById('posts-container');
+
+    function applyFilters() {
+        const album = albumSelect.value;
+        const sort = sortSelect.value;
+
+        const items = Array.from(container.querySelectorAll('.expand-item')) as HTMLElement[];
+
+        // 篩選相簿
+        items.forEach(item => {
+            const match = album === 'all' || item.dataset.album === album;
+            item.style.display = match ? 'block' : 'none';
+        });
+
+        // 排序
+        const visible = items.filter(i => i.style.display !== 'none');
+        visible.sort((a, b) => {
+            const da = Number(a.dataset.date);
+            const db = Number(b.dataset.date);
+            return sort === 'newest' ? db - da : da - db;
+        });
+        visible.forEach(item => container.appendChild(item));
+    }
+
+    sortSelect.addEventListener('change', applyFilters);
+    albumSelect.addEventListener('change', applyFilters);
+    applyFilters();
+</script>

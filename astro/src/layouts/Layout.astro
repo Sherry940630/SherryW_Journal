@@ -1,5 +1,6 @@
 ---
 const { title = "王之諠的回憶錄" } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="zh-Hant">
@@ -7,12 +8,12 @@ const { title = "王之諠的回憶錄" } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <title>{title}</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/SherryW_Journal/style.css">
 </head>
 
 <body>
     <div class="book">
-        <img class="book-bg" src="/images/Assets/BookBase.png" alt="book">
+		<img class="book-bg" src="/SherryW_Journal/images/Assets/BookBase.png" alt="book">
 
         <div class="book-ui">
             <div class="page left" id="leftPage">
@@ -27,7 +28,7 @@ const { title = "王之諠的回憶錄" } = Astro.props;
 
             <div class="tabs">
                 <div class="tab-group">
-                    <a href="/" class="tab main-tab">主頁</a>
+                    <button class="tab main-tab" onclick={`window.location='${base}'`}>主頁</button>
                 </div>
                 <div class="tab-group">
                     <button class="tab main-tab">自我介紹</button>
@@ -39,17 +40,17 @@ const { title = "王之諠的回憶錄" } = Astro.props;
                 <div class="tab-group">
                     <button class="tab main-tab">廢文博物館</button>
                     <div class="sub-tabs">
-                        <a href="/shitposts-ch">中文</a>
-                        <a href="/shitposts-en">英文</a>
+                        <a href={`${base}shitposts-ch`}>中文</a>
+                        <a href={`${base}shitposts-en`}>英文</a>
                     </div>
                 </div>
                 <div class="tab-group">
                     <button class="tab main-tab">作品集</button>
                     <div class="sub-tabs">
-                        <a href="/unity">Unity</a>
-                        <a href="/ibispaint">ibisPaint</a>
-                        <a href="/blender">Blender</a>
-                        <a href="/llm">LLM</a>
+                        <a href={`${base}unity`}>Unity</a>
+                        <a href={`${base}ibispaint`}>ibisPaint</a>
+                        <a href={`${base}blender`}>Blender</a>
+                        <a href={`${base}llm`}>LLM</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +62,7 @@ const { title = "王之諠的回憶錄" } = Astro.props;
     </div>
 
     <script>
-        // Tab expand/collapse
+        //Tab expand/collapse
         document.querySelectorAll(".main-tab").forEach(tab => {
             tab.addEventListener("click", () => {
                 const group = tab.closest(".tab-group");
@@ -72,7 +73,7 @@ const { title = "王之諠的回憶錄" } = Astro.props;
             });
         });
 
-        // Image modal
+        //放大圖片用的
         document.addEventListener("click", (e) => {
             const modal = document.getElementById("image-modal");
             const modalImg = document.getElementById("image-modal-img");
@@ -93,7 +94,7 @@ const { title = "王之諠的回憶錄" } = Astro.props;
             }
         });
 
-        // Expand/collapse blocks
+        //Expand/collapse blocks
         document.getElementById("rightPage").addEventListener("click", (e) => {
             const expandBtn = e.target.closest(".expand-btn");
             if (expandBtn) {
