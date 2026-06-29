@@ -1,0 +1,124 @@
+---
+import BookLayout from '../layouts/Layout.astro';
+---
+
+<BookLayout>
+    <div slot="left">
+            <h2>The Bell Never Rings</h2>
+    <p>
+        下載（選一個即可）：<br>
+        <a href="releases/TheBellNeverRings_BETA3.zip">
+        <img src="images/UI/DownloadButtonPixelated.png" width=60%>
+        </a><br>
+        <a href="https://github.com/Sherry940630/TheBellNeverRings_ResuscitatedAgain/releases/tag/v0.0.2" target="_blank">
+            Github Release最新版
+        </a><br>
+        <a href="https://drive.google.com/file/d/1xF4j8X5ihGCux3H_UNtLq3sMijGs0DIk/view?usp=sharing" target="_blank">
+            Google雲端
+        </a><br>
+        下載完之後請解壓縮，並開啟TheBellNeverRings.exe執行檔。
+        （不是UnityCrashHandler64.exe）
+        <img src="images/OtherBellStuff/ExeDemonstration.png" width=100%>
+    </p>
+    </div>
+
+    <div slot="right">
+        
+    建議音量：20%<br>
+    <video id="trailer" controls width=100%>
+    <source src="videos/TheBellNeverRings_BETA_Trailer_output.mp4" type="video/mp4">
+    </video>
+
+    <!--
+    <script>
+        var video = document.getElementById("trailer");
+        video.volume = 0.5;
+    </script>
+    -->
+
+    <h3><b>【遊戲類型】</b></h3>
+    <p>2D像素Roguelike RPG</p>
+
+    <h3><b>【遊戲機制】</b></h3>
+    <p>與同學一起在食堂攻擊食物，升級解鎖新武器，三分鐘後迎戰會瘋狂噴貢丸的排骨麵。</p>
+
+    <h3><b>【技術涵蓋】</b></h3>
+    <p>C#程式、Unity開發環境、aseprite動畫、影音剪輯、安撫我的顯卡。</p>
+
+    <strong>點擊以下標題可展開。</strong>
+
+    <div class="expand-item">
+        <button class="expand-btn"><h3><b>【動機】</b></h3></button>
+        <div class="expand-content">
+        <p>我想做出可以表達我性格的遊戲，所以把我跟我朋友做成角色。遊戲背景是我們學校、角色穿的衣服是我們學校運動服，因為我覺得這很適合放在學習歷程。</p>
+        <p>遊戲類型選擇Roguelike RPG是受Holocure的啟發，我每次壓力大都會去玩那個，它既輕鬆又不會完全沒有刺激。</p>
+        <p>而這個2D可愛像素畫風除了比較好畫以外，也是因為它看起來就很休閒很討喜。</p>
+        <p>一開始原本要跟我朋友一起做，因為這學校都沒人陪我一起做Unity遊戲讓我很孤單，所以他幫忙貢獻了敵人自動生成腳本，但是後面基於時間分配因素，他沒有再參與開發，但仍然提供了非常多情緒支持。</p>
+        <button class="collapse-btn">▲ 縮小</button>
+        </div>
+    </div>
+
+    <div class="expand-item">
+        <button class="expand-btn"><h3><b>【卡最久的地方】</b></h3></button>
+        <div class="expand-content">
+        <b>〔專案死去活來事件〕</b><br>
+        簡單來說我差點因為過度追求完美、熬夜趕進度而讓整個專案和它的備份檔都死掉。<br><br>
+        一開始我那個朋友（遊戲裡另一個角色的本人）跟老師都建議我寒假一開始就直接把專案收尾，先做報告就對了，但我想要盡可能呈現出它完整的樣子，所以我就一直繼續新增功能，我想等到最後再錄影做預告片。<br><br>
+        結果我2/1（學習歷程上傳截止日前兩天）才發現我的gitignore檔一直都放錯層，導致專案儲存了大量暫存檔，讓檔案容量爆到2GB。我非常依賴用Github進行專案共享與備份，但Github上傳限制就是2GB，超過就無法再上傳，所以我一定要解決這個問題。然而直接移動gitignore檔會讓它一口氣把3萬8千份暫存檔刪掉，github拒絕上傳這麼大的變更。當時已經凌晨2點多，我在睡眠不足又焦慮的情況下無法判斷ChatGPT與Gemini給我的powershell指令是否安全，他們兩個就合作把我的專案與備份檔砍掉了，我也沒有任何錄影和執行檔可以做學習歷程。我在凌晨5點打電話吵醒我朋友讓他聽我崩潰大哭半小時，最後我搞到天亮才透過回收桶裡殘存的.git檔把過去專案更新救回來，但現在資料夾全都是亂的、檔案一樣超出2GB，無法再開發下去。我只能妥協，先打包執行檔錄影做學習歷程。<br><br>
+        若沒經歷過這件事，我也不會想到就單純多推進一點會搞得這麼嚴重，所以壓力與作息控管真的非常重要，如果我讓自己狀態好一點再工作的話或許就不會犯這麼蠢的錯誤。<br><br>
+        <b>〔拉普拉斯轉換特效〕</b><br>
+        我的大招叫「拉普拉斯轉換」，我給它做了一個螢幕震動和轉黑白的特效。這個特效花了我一個多禮拜，因為ChatGPT叫我做的VFX一直行不通，某個失眠的夜晚裡我突然想起幾年前摸索過一個叫Cinemachine的東西，是用來渲染場景氛圍用的，雖然聽起來不直觀但我覺得可以做到類似效果，我最後就拼湊一大堆不同的YouTube教學做出來了。我覺得超有成就感，因為是自己想出來的。<br><br>
+        <b>〔GPU過載的悲劇〕</b><br>
+        發生過數次，整個Unity引擎會無法運作，連Unity遊戲都開不了。有幾次電腦重開它就自己恢復了，但有兩次不管做什麼都無濟於事。最後我受不了了就自己用DDU移除顯卡驅動程式，然後再上網重裝，一開始沒這麼做是因為DDU跳警告出來說這個動作很危險，但我的進度已經被迫停滯好幾週了，我覺得我必須打破現狀。<br>
+        <button class="collapse-btn">▲ 縮小</button>
+        </div>
+    </div>
+
+    <div class="expand-item">
+        <button class="expand-btn"><h3><b>【靈感來源】</b></h3></button>
+        <div class="expand-content">
+           <p>除了玩法與UI參考Holocure與Vampire Survivors以外，設計層面也受一些作品的耳濡目染。</p>
+    <ul>
+        <li>我的電擊攻擊參考了「植物大戰殭屍2」裡的「閃電蘆葦」。</li>
+        <li>
+            我給我朋友的蛇武器的左右擺頭動畫是參考「植物大戰殭屍」的豌豆跟向日葵。<br>
+            <img src="images/Inspiration/PvzSunflower.gif" width="50">
+            <img src="images/Inspiration/PvzPeashooter.gif" width="50">
+        </li>
+        <li>而他的鉤子武器是因為他喜歡玩釣魚遊戲，然後我就聯想到”Minecraft”的釣竿可以當鉤子把生物鉤過來。</li>
+        <li>他的血影突襲技能設計參考了「元氣騎士」與「牛奶巧克力」的刺客。</li>
+        <li>敵人「滷蛋七號」是在parody「王者榮耀」裡的「魯班七號」，玩家都叫他滷蛋。</li>
+        <li>戰鬥音樂是Suno.ai網站生成的，風格參考Final Fantasy的那種8 bit chiptune（但我沒有直接拿別人音檔餵AI，我只是打字生成）。<br>
+        <a href="https://suno.com/s/wDpf7wbhur09XXNZ" target="_blank">（下載這個超史詩的BGM）</a></li>
+        <li>預告片音效由Pixabay.com下載後透過Kinemaster進行調音。</li>
+        </ul>
+        <p>遊戲名稱是ChatGPT想的。其餘點子要嘛就是自行構思，要嘛就是太常見了我不知道該credit誰。拉普拉斯轉換和旋轉矩陣都是我在讀數學的時候看到，然後就覺得這很適合做成攻擊招式。</p>
+        <button class="collapse-btn">▲ 縮小</button>
+        </div>
+    </div>
+
+    <div class="expand-item">
+        <button class="expand-btn"><h3><b>【反思】</b></h3></button>
+        <div class="expand-content">
+        我在剪預告片的當下超恐慌，深怕大家會覺得我剪得很尷尬或是很蠢，但是目前所有朋友都是給我正面評價，看到大家認可我的表達方式讓我感動到哭了（非誇飾，相信我我不會對著電子學感動到哭出來）。<br><br>
+        做遊戲的部分我也因為每個小bug跟設計缺陷感到自卑，但是看起來我身邊的人都不會在意這些小細節，他們只在意整體體驗以及我的創意。<br><br>
+        換個角度想，如果我一個人做得出3A大作的話我就不用讀書了吧（半開玩笑），所以或許我們要在自省的同時適當承認自己做得好的地方。
+        <button class="collapse-btn">▲ 縮小</button>
+        </div>
+    </div>
+
+    <h3><b>【相關連結】</b></h3>
+    <ul>
+        <li>
+            <a href="https://trello.com/b/fTWcevQY/114%E5%B9%B4%E8%B3%87%E4%B9%99%E5%B0%88%E9%A1%8C%E8%A3%BD%E4%BD%9C-%E7%8E%8B%E4%B9%8B%E8%AB%A0%EF%BC%86%E9%83%AD%E5%AE%B8%E7%91%8B" target="_blank">
+            我紀錄開發進度的Trello版
+            </a>
+        </li>
+        <li>
+            <a href="https://youtu.be/PSFYN_Tp5Fw?si=ted0JpoB4MpMKbWY">
+                預告片Youtube備份
+            </a>
+        </li>
+    </ul>
+    </div>
+</BookLayout>

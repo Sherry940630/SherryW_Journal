@@ -13,5 +13,15 @@
   {
     "left": "<h2>Blender建模</h2>...",
     "right": "<h3>甜甜圈</h3>..."
-  }
+  },
+  "shitpostsCh": 
+  {
+    "left": "<h3>廢文博物館</h3><p>篩選器：</p><select id='sort-select'><option value='newest'>最新發布</option><option value='oldest'>最舊發布</option></select><select id='album-select'><option value='all'>所有相簿</option><option value='daily'>日常廢文</option><option value='food'>食物</option></select>",
+    "right": "<div id='posts-container'></div>"
+  },
+  "shitposts": 
+  [
+    { "title": "廢文一則", "content": "人生就是個便當。", "album": "daily", "date": 20250610 },
+    { "title": "好吃", "content": "沒什麼好說的就是很好吃。", "album": "food", "date": 20250601 }
+  ]
 }

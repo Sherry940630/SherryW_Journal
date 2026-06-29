@@ -1,0 +1,114 @@
+---
+const { title = "王之諠的回憶錄" } = Astro.props;
+---
+
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="book">
+        <img class="book-bg" src="/images/Assets/BookBase.png" alt="book">
+
+        <div class="book-ui">
+            <div class="page left" id="leftPage">
+                <slot name="left" />
+            </div>
+
+            <div class="spine"></div>
+
+            <div class="page right" id="rightPage">
+                <slot name="right" />
+            </div>
+
+            <div class="tabs">
+                <div class="tab-group">
+                    <a href="/" class="tab main-tab">主頁</a>
+                </div>
+                <div class="tab-group">
+                    <button class="tab main-tab">自我介紹</button>
+                    <div class="sub-tabs">
+                        <a href="/fandoms">入坑</a>
+                        <a href="/timeline">人生時間線</a>
+                    </div>
+                </div>
+                <div class="tab-group">
+                    <button class="tab main-tab">廢文博物館</button>
+                    <div class="sub-tabs">
+                        <a href="/shitposts-ch">中文</a>
+                        <a href="/shitposts-en">英文</a>
+                    </div>
+                </div>
+                <div class="tab-group">
+                    <button class="tab main-tab">作品集</button>
+                    <div class="sub-tabs">
+                        <a href="/unity">Unity</a>
+                        <a href="/ibispaint">ibisPaint</a>
+                        <a href="/blender">Blender</a>
+                        <a href="/llm">LLM</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-modal">
+        <img id="image-modal-img">
+    </div>
+
+    <script>
+        // Tab expand/collapse
+        document.querySelectorAll(".main-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                const group = tab.closest(".tab-group");
+                document.querySelectorAll(".tab-group.open").forEach(open => {
+                    if (open !== group) open.classList.remove("open");
+                });
+                group.classList.toggle("open");
+            });
+        });
+
+        // Image modal
+        document.addEventListener("click", (e) => {
+            const modal = document.getElementById("image-modal");
+            const modalImg = document.getElementById("image-modal-img");
+            if (e.target.tagName === "IMG" &&
+                (e.target.closest("#leftPage") || e.target.closest("#rightPage"))) {
+                modal.classList.add("show");
+                modalImg.src = e.target.src;
+            } else if (e.target.id === "image-modal") {
+                modal.classList.remove("show");
+                modalImg.src = "";
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                document.getElementById("image-modal").classList.remove("show");
+                document.getElementById("image-modal-img").src = "";
+            }
+        });
+
+        // Expand/collapse blocks
+        document.getElementById("rightPage").addEventListener("click", (e) => {
+            const expandBtn = e.target.closest(".expand-btn");
+            if (expandBtn) {
+                const content = expandBtn.closest(".expand-item")?.querySelector(".expand-content");
+                if (content) content.classList.toggle("show");
+                return;
+            }
+            const collapseBtn = e.target.closest(".collapse-btn");
+            if (collapseBtn) {
+                const content = collapseBtn.closest(".expand-content");
+                const titleBtn = content?.closest(".expand-item")?.querySelector(".expand-btn");
+                if (content) content.classList.remove("show");
+                titleBtn?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    </script>
+</body>
+</html>
