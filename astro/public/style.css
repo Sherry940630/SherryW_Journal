@@ -14,10 +14,9 @@
 body 
 {
     font-family: 'NotoSans', sans-serif;
-    color: #4e1c74;
-
+    color: #dfcbed;
     overflow-x: hidden;
-    background-image: url(images/Assets/SiteBackground.png);
+    background-image: url(images/Assets/SiteBackground_Dark.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -26,6 +25,12 @@ body
     align-items: center;
     height: 100vh;
     margin: 0;
+}
+
+body.light-mode 
+{
+    background-image: url(images/Assets/SiteBackground_Light.png);
+    color: #4e1c74;
 }
 
 h2 
@@ -43,7 +48,7 @@ h2
 
 .book 
 {
-    background-image: url(images/Assets/BookBase.png);
+    background-image: url(images/Assets/BookBase_Dark.png);
     background-size: contain; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -53,6 +58,11 @@ h2
     max-width: 900px;
     aspect-ratio: 3 / 2; 
     margin: auto;
+}
+
+body.light-mode .book 
+{
+    background-image: url(images/Assets/BookBase_Light.png);
 }
 
 .book-bg 
@@ -103,7 +113,8 @@ h2
 .left 
 {
     width: 40%;
-    box-sizing: border-box
+    box-sizing: border-box;
+    position: relative; 
 }
 
 /* 右頁 */
@@ -128,9 +139,9 @@ h2
 
 .tab
 {
-    background-image: url(images/Assets/BookmarkBase.png);
+    background-image: url(images/Assets/BookmarkBase_Dark.png);
     background-color: transparent;
-    background-size: 100% 100%; 
+    background-size: contain; 
     background-repeat: no-repeat;
     background-position: center;
     white-space: nowrap; /*不換行*/
@@ -139,6 +150,12 @@ h2
     margin-bottom: 5px;
     border: none; 
     outline: none;
+    aspect-ratio: 6 / 1; /*這樣可以讓它變高但是不改變寬度也不會裁切*/
+}
+
+body.light-mode .tab
+{
+    background-image: url(images/Assets/BookmarkBase_Light.png);
 }
 
 .sub-tabs 
@@ -150,8 +167,8 @@ h2
 
 .sub-tabs a 
 {
-  background-image: url(images/Assets/SubBookmarkBase.png);
-  background-size: 100% 100%; 
+  background-image: url(images/Assets/SubBookmarkBase_Dark.png);
+  background-size: contain;
   background-color: transparent;
   display: block;
   background-repeat: no-repeat;
@@ -164,6 +181,11 @@ h2
   white-space: nowrap;
 }
 
+body.light-mode .sub-tabs a 
+{
+  background-image: url(images/Assets/SubBookmarkBase_Light.png);
+}
+
 .tab-group.open .sub-tabs 
 {
   display: block;
@@ -172,6 +194,27 @@ h2
 .tab:hover 
 {
     cursor: pointer;
+}
+
+.theme-toggle-btn
+{
+    position: absolute;
+    bottom: 100%;            /* 按鈕底部精準貼齊 .left 頂端，縮放也不會跑掉 */
+    left: -7%;               /* 負值讓按鈕貼著左頁的左外緣往外凸出，不蓋住頁面內容 */
+    width: clamp(28px, 8%, 42px); /* 縮小很多，避免在大螢幕上過大 */
+    aspect-ratio: 69 / 108;
+    background-image: url(images/Assets/DarkModeToggleMark.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+}
+
+body.light-mode .theme-toggle-btn
+{
+    background-image: url(images/Assets/LightModeToggleMark.png);
 }
 
 /* 那些展開的便利貼 */
@@ -199,7 +242,7 @@ h2
 
 .expand-content-top
 {
-    background-image: url(images/Assets/StickyNoteBase_Top.png);
+    background-image: url(images/Assets/StickyNoteBase_Top_Dark.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     display: block;
@@ -208,9 +251,14 @@ h2
     box-sizing: border-box;
 }
 
+body.light-mode .expand-content-top
+{
+    background-image: url(images/Assets/StickyNoteBase_Top_Light.png);
+}
+
 .expand-content-mid
 {
-    background-image: url(images/Assets/StickyNoteBase_Mid.png);
+    background-image: url(images/Assets/StickyNoteBase_Mid_Dark.png);
     background-size: 100% auto;
     background-repeat: repeat-y;
     width: 100%;
@@ -220,14 +268,24 @@ h2
     overflow: visible;
 }
 
+body.light-mode .expand-content-mid
+{
+    background-image: url(images/Assets/StickyNoteBase_Mid_Light.png);
+}
+
 .expand-content-bottom
 {
-    background-image: url(images/Assets/StickyNoteBase_Bottom.png);
+    background-image: url(images/Assets/StickyNoteBase_Bottom_Dark.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 100%;
     height: 29px; 
     display: block;
+}
+
+body.light-mode .expand-content-bottom
+{
+    background-image: url(images/Assets/StickyNoteBase_Bottom_Light.png);
 }
 
 
@@ -239,13 +297,18 @@ h2
 
 button.expand-btn 
 {
-    color: #4e1c74;
+    color: #dfcbed;
     background: none;
     border: none;
     padding: 0;
     font-size: inherit;
     cursor: pointer;
     text-align: left;
+}
+
+body.light-mode button.expand-btn 
+{
+    color: #4e1c74;
 }
 
 button.expand-btn:hover
