@@ -1,5 +1,11 @@
 /* CSS STYLESHEET */
 
+@font-face 
+{
+    font-family: 'NotoSans';
+    src: url('fonts/NotoSansTC-Medium.ttf') format('truetype');
+}
+
 *, *::before, *::after 
 {
     box-sizing: border-box; /* 這是防止排版爆炸的最重要一行 */
@@ -7,6 +13,9 @@
 
 body 
 {
+    font-family: 'NotoSans', sans-serif;
+    color: #4e1c74;
+
     overflow-x: hidden;
     background-image: url(images/Assets/SiteBackground.png);
     background-size: cover;
@@ -19,7 +28,8 @@ body
     margin: 0;
 }
 
-h2 {
+h2 
+{
     display: block;
     font-size: 1.5em;
     margin-block-start: 0em;
@@ -45,7 +55,8 @@ h2 {
     margin: auto;
 }
 
-.book-bg {
+.book-bg 
+{
     position: absolute;
     inset: 0;
     width: 100%;
@@ -54,7 +65,8 @@ h2 {
     z-index: 0;
 }
 
-.book-ui {
+.book-ui 
+{
     position: absolute;
     inset: 0;
     display: flex;
@@ -101,17 +113,6 @@ h2 {
     padding-left: 8%;
     width: 60%;
 }
-
-/* 書脊 
-.spine 
-{
-    width: 2%;
-    background-color: #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-*/
 
 /* 書籤 */
 .tabs 
@@ -173,28 +174,72 @@ h2 {
     cursor: pointer;
 }
 
-/* 主頁那些展開的list東東 */
+/* 那些展開的便利貼 */
 .expand-content 
 {
     display: none;
     overflow-y: auto;
-    max-height: 250px;
+    max-height: none;
     margin-top: 1px;    
     /* 格式：上 右 下 左 */
     padding: 8px 15px 0px 23px;
-    background-color: transparent;
-    background-image: url(images/Assets/StickyNoteBase.png);
-    background-size:cover;
 }
+
+.expand-content-wrapper
+{
+    display: none;
+}
+
+.expand-content-wrapper.show
+{
+    display: block;
+    border-image-slice: 18 15 29 23 fill;
+    border-image-repeat: stretch;
+}
+
+.expand-content-top
+{
+    background-image: url(images/Assets/StickyNoteBase_Top.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: block;
+    width: 100%;
+    height: 18px;
+    box-sizing: border-box;
+}
+
+.expand-content-mid
+{
+    background-image: url(images/Assets/StickyNoteBase_Mid.png);
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    width: 100%;
+    height: auto;
+    padding: 0px 15px 0px 23px;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.expand-content-bottom
+{
+    background-image: url(images/Assets/StickyNoteBase_Bottom.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 29px; 
+    display: block;
+}
+
 
 .expand-content.show 
 {
     display: block;
-    max-height: 500px;
+    max-height: none;
 }
 
 button.expand-btn 
 {
+    color: #4e1c74;
     background: none;
     border: none;
     padding: 0;
@@ -210,7 +255,7 @@ button.expand-btn:hover
 
 .collapse-btn 
 {
-    margin: 10px auto 8px;
+    margin: 10px auto 0px;
     display: block;
     background: none;
     border: none;
@@ -261,6 +306,47 @@ button.expand-btn:hover
     padding: 8px;
     overflow-y: auto;    
     flex: 1;
+}
+
+.post-date
+{
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+.comment-block
+{
+    display: flex;
+    gap: 6px;
+    margin-left: 20px;
+    margin-top: 6px;
+}
+
+.comment-arrow
+{
+    color: #aaa;
+    flex-shrink: 0;
+}
+
+.comment-content
+{
+    background: rgba(0,0,0,0.04);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
+.comment-content p
+{
+    margin: 2px 0;
+}
+
+.comment-date
+{
+    color: #aaa;
+    font-size: 12px;
+    margin-left: 6px;
 }
 
 .default-text-area 

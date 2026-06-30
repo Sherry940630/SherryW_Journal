@@ -1,0 +1,53 @@
+---
+import BookLayout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('FandomMarkdowns');
+
+---
+<BookLayout>
+<div slot="left">
+    <h3>坑單一覽</h3>
+    影視深坑<br>
+    ► <a href="#breaking-bad">Breaking Bad</a><br>
+    ► <a href="#south-park">South Park</a><br>
+    ► <a href="#bojack">Bojack Horseman</a><br>
+    ► <a href="#beavis">Beavis & Butthead</a><br>
+    遊戲深坑<br>
+    ► <a href="#minecraft">Minecraft</a><br>
+    ► <a href="#kairosoft">Kairosoft遊戲</a><br>
+    ► <a href="#wasabi">Wasabi Studio遊戲</a><br>
+</div>
+
+<div slot="right">
+    點擊標題可縮小/展開。
+
+    <div class="expand-item" id="breaking-bad">
+        <button class="expand-btn">Breaking Bad</button>
+        <div class="expand-content-wrapper show">
+            <div class="expand-content-top"></div>
+            <div class="expand-content-mid">
+                <img src={`${base}images/Posts/TierLists/BreakingBadTierList.png`} width="100%">
+                <p>心得</p>
+                <button class="collapse-btn">▲ 縮小</button>
+            </div>
+            <div class="expand-content-bottom"></div>
+        </div>
+    </div>
+
+    <div class="expand-item" id="south-park">
+        <button class="expand-btn">South Park</button>
+        <div class="expand-content-wrapper show">
+            <div class="expand-content-top"></div>
+            <div class="expand-content-mid">
+                <img src={`${base}images/Posts/TierLists/BreakingBadTierList.png`} width="100%">
+                <p>心得</p>
+                <button class="collapse-btn">▲ 縮小</button>
+            </div>
+            <div class="expand-content-bottom"></div>
+        </div>
+    </div>
+
+</div>
+</BookLayout>

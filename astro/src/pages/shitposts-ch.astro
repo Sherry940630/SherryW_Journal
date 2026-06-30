@@ -2,11 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
 
-const posts = 
-[
-    { title: "廢文一則", content: "人生就是個便當。", album: "lifeUpdates", date: 20250610 },
-    { title: "好吃", content: "沒什麼好說的就是很好吃。", album: "yapping", date: 20250601 },
-];
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('ShitpostMarkdowns');
+
+//預設按最新排序
+const posts = allPosts.sort((a, b) => 
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+//自動從所有貼文抓出所有相簿名稱
+const albums = [...new Set(posts.map(p => p.data.album))];
 ---
 
 <Layout>
@@ -26,24 +31,44 @@ const posts =
         <select id="album-select">
             <option value="all">所有相簿</option>
             <option value="lifeUpdates">人生更新</option>
-            <option value="yapping">真實廢文</option>
+            <option value="halfSarcastic">Half Sarcastic</option>
+            <option value="violateMetaPolicies">可能違反Meta社群守則的發言</option>
+            <option value="opinions">想法</option>
+            <option value="yapping">完全的廢文</option>
+            <option value="excuseForOthers">幫別人找藉口</option>
+            <option value="emotionalGrowth">解謎自己的情緒</option>
         </select>
     </div>
 
-    <div slot="right">
-        <div id="posts-container">
-            {posts.map(post => (
-                <div class="expand-item" data-album={post.album} data-date={post.date}>
-                    <button class="expand-btn">{post.title}</button>
-                    <div class="expand-content show">
-                        <p>{post.content}</p>
-                        <small>{String(post.date).slice(0,4)}/{String(post.date).slice(4,6)}/{String(post.date).slice(6,8)}</small>
-                        <button class="collapse-btn">▲ 縮小</button>
-                    </div>
+<div slot="right">
+    <div id="posts-container">
+    {posts.map((post) => (
+        <div class="expand-item" data-album={post.data.album} data-date={post.data.date.getTime()}>
+            <div class="post-date">{post.data.date.toLocaleDateString('zh-TW')}</div>
+            <button class="expand-btn">{post.data.title}</button>
+            <div class="expand-content-wrapper show">
+                <div class="expand-content-top"></div>
+                <div class="expand-content-mid">
+                    <div class="post-body" set:html={post.body} />
+                    {post.data.comments && post.data.comments.map(comment => (
+                        <div class="comment-block">
+                            <span class="comment-arrow">↪</span>
+                            <div class="comment-content">
+                                <strong>{comment.author}</strong>
+                                {comment.date && <span class="comment-date">{comment.date}</span>}
+                                <p set:html={comment.text}></p>
+                            </div>
+                        </div>
+                    ))}
+                    <button class="collapse-btn">▲ 縮小</button>
                 </div>
-            ))}
+                <div class="expand-content-bottom"></div>
+            </div>
         </div>
+    ))}
     </div>
+</div>
+
 </Layout>
 
 <script>

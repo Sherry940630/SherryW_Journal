@@ -4,7 +4,7 @@ const base = import.meta.env.BASE_URL;
 ---
 <BookLayout>
     <div slot="left">
-        <h3>花蓮高工資訊科-<br>王之諠的學習歷程</h3>
+        <h3>王之諠的Internet Archive</h3>
         <p>本科相關技能分布：<br>
             <img src={`${base}images/Self/SkillChart.png`} width="100%">
             然後我喜歡數學！！！！不讀數學系純粹是基於出路考量，但是我沒事就喜歡研究數學。
@@ -16,14 +16,15 @@ const base = import.meta.env.BASE_URL;
         <h3>【重大證照】</h3>
         <div class="expand-item">
             <button class="expand-btn">📝多益 TOEIC 960 分</button>
-            <div class="expand-content">
-                <h6>
+            <div class="expand-content-wrapper show">
+                <div class="expand-content-top"></div>
+                <div class="expand-content-mid">
                     <img src={`${base}images/Certificates/TOEIC _GoldenCertificate_960.jpg`} width="100%">
                     <p>不管能力再怎麼好，做任何事之前我都習慣先熟悉活動節奏...</p>
-                </h6>
-                <button class="collapse-btn">▲ 縮小</button>
+                    <button class="collapse-btn">▲ 縮小</button>
+                </div>
+                <div class="expand-content-bottom"></div>
             </div>
         </div>
-        <!-- 其他的 expand-item 照著 Home.html 的格式繼續貼進來 -->
     </div>
 </BookLayout>
