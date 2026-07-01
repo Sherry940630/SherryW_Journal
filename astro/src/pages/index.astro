@@ -4,27 +4,42 @@ const base = import.meta.env.BASE_URL;
 ---
 <BookLayout>
     <div slot="left">
-        <h3>王之諠的Internet Archive</h3>
-        <p>本科相關技能分布：<br>
-            <img src={`${base}images/Self/SkillChart.png`} width="100%">
-            然後我喜歡數學！！！！不讀數學系純粹是基於出路考量，但是我沒事就喜歡研究數學。
+        <h2>王之諠的<br>Internet Archive</h2>
+        <p>做這個網頁的初衷：<br>
+            現在社群軟體都在集體狗屎化，像meta一直在「隨機」ban人，我覺得總有一天會輪到我，我希望屆時我至少都有備份我自己這幾年來發的貼文。這些都是我的成長歷程，不可以消失。<br><br>
+            而且別說未來，現在祖克伯的搜尋引擎就已經失能了，我很常找不到我之前自己的貼文，與其繼續每天中風不如我自己搞一個可以用的東西出來。<br><br>
+            不過短期內只打算放自己的東西（絕對不是因為我懶得研究後台開發而且也毫無興趣），未來有機會看看要不要找別的資工人把這個做成一個大都可以寫自己日記的地方。沒錯是2000's文藝復興。
         </p>
     </div>
 
     <div slot="right">
-        點擊證照/比賽標題可展開。
-        <h3>【重大證照】</h3>
+        點擊標題可縮小/展開便利貼。
+        <h3>【網頁導覽】</h3>
+
         <div class="expand-item">
-            <button class="expand-btn">📝多益 TOEIC 960 分</button>
+            <button class="expand-btn">切換主題</button>
             <div class="expand-content-wrapper show">
                 <div class="expand-content-top"></div>
                 <div class="expand-content-mid">
-                    <img src={`${base}images/Certificates/TOEIC _GoldenCertificate_960.jpg`} width="100%">
-                    <p>不管能力再怎麼好，做任何事之前我都習慣先熟悉活動節奏...</p>
+                    點左上角這個書籤。<br>
+                    <img src={`${base}images/UI/ThemeToggleDemonstrate.png`} width=100%><br>
                     <button class="collapse-btn">▲ 縮小</button>
                 </div>
                 <div class="expand-content-bottom"></div>
             </div>
         </div>
+
+                <div class="expand-item">
+            <button class="expand-btn">切換分頁</button>
+            <div class="expand-content-wrapper show">
+                <div class="expand-content-top"></div>
+                <div class="expand-content-mid">
+                    點右側這些書籤。<br>
+                    <button class="collapse-btn">▲ 縮小</button>
+                </div>
+                <div class="expand-content-bottom"></div>
+            </div>
+        </div>
+
     </div>
 </BookLayout>

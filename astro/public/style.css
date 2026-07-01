@@ -46,6 +46,18 @@ h2
     text-align: center;
 }
 
+a:-webkit-any-link 
+{
+    color: rgb(127, 138, 255);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+body.light-mode a:-webkit-any-link 
+{
+    color: rgb(23, 36, 178);
+}
+
 .book 
 {
     background-image: url(images/Assets/BookBase_Dark.png);
@@ -139,6 +151,8 @@ body.light-mode .book
 
 .tab
 {
+    color: #f2e9f9; /*字稍微比書本內容再淡一點*/
+    font-size: 16px;
     background-image: url(images/Assets/BookmarkBase_Dark.png);
     background-color: transparent;
     background-size: contain; 
@@ -146,43 +160,47 @@ body.light-mode .book
     background-position: center;
     white-space: nowrap; /*不換行*/
     text-decoration: none;
-    padding: 10px 20px;
+    text-align: left;
+    padding: 8px 14px;
     margin-bottom: 5px;
     border: none; 
     outline: none;
-    aspect-ratio: 6 / 1; /*這樣可以讓它變高但是不改變寬度也不會裁切*/
+    aspect-ratio: 8 / 1; /*這樣可以讓它變高但是不改變寬度也不會裁切*/
 }
 
 body.light-mode .tab
 {
+    color: #4e1c74;
     background-image: url(images/Assets/BookmarkBase_Light.png);
 }
 
 .sub-tabs 
 {
   display: none;
-  margin-left: 1px;
   margin-bottom: 10px;
 }
 
 .sub-tabs a 
 {
+  color: #4e1c74;
+  font-size: 16px;
   background-image: url(images/Assets/SubBookmarkBase_Dark.png);
   background-size: contain;
   background-color: transparent;
   display: block;
   background-repeat: no-repeat;
   background-position: center;
-  color: black;
   padding: 8px 14px;
   margin-top: 6px;
   border-radius: 0 8px 8px 0;
   text-decoration: none;
   white-space: nowrap;
+
 }
 
 body.light-mode .sub-tabs a 
 {
+  color: #4e1c74;
   background-image: url(images/Assets/SubBookmarkBase_Light.png);
 }
 
@@ -199,9 +217,9 @@ body.light-mode .sub-tabs a
 .theme-toggle-btn
 {
     position: absolute;
-    bottom: 100%;            /* 按鈕底部精準貼齊 .left 頂端，縮放也不會跑掉 */
-    left: -7%;               /* 負值讓按鈕貼著左頁的左外緣往外凸出，不蓋住頁面內容 */
-    width: clamp(28px, 8%, 42px); /* 縮小很多，避免在大螢幕上過大 */
+    bottom: 91%;     
+    left: 15%;         
+    width: clamp(21px, 8%,31.5px);
     aspect-ratio: 69 / 108;
     background-image: url(images/Assets/DarkModeToggleMark.png);
     background-size: contain;
@@ -225,7 +243,7 @@ body.light-mode .theme-toggle-btn
     max-height: none;
     margin-top: 1px;    
     /* 格式：上 右 下 左 */
-    padding: 8px 15px 0px 23px;
+    padding: 8px 5px 0px 28px;
 }
 
 .expand-content-wrapper
@@ -251,6 +269,12 @@ body.light-mode .theme-toggle-btn
     box-sizing: border-box;
 }
 
+.expand-content-top p
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 body.light-mode .expand-content-top
 {
     background-image: url(images/Assets/StickyNoteBase_Top_Light.png);
@@ -266,6 +290,8 @@ body.light-mode .expand-content-top
     padding: 0px 15px 0px 23px;
     box-sizing: border-box;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
 }
 
 body.light-mode .expand-content-mid
@@ -324,6 +350,11 @@ button.expand-btn:hover
     border: none;
     cursor: pointer;
     font-size: 14px;
+    color: #b1b1b1;
+}
+
+body.light-mode .collapse-btn 
+{
     color: #666;
 }
 
@@ -393,6 +424,14 @@ button.expand-btn:hover
 }
 
 .comment-content
+{
+    background: rgba(255, 255, 255, 0.095);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
+body.light-mode .comment-content
 {
     background: rgba(0,0,0,0.04);
     border-radius: 6px;
