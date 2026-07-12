@@ -9,4 +9,4 @@ album: halfSarcastic
 但實際上只是因為我無時無刻都生無可戀
 <br>
 
-<img src="/SherryW_Journal/public/images/Posts/0607-DeadAhhFace.jpg" width="40%">
+<img src="/SherryW_Journal/astro/public/images/Posts/0607-DeadAhhFace.jpg" width="40%">
