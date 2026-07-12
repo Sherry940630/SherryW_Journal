@@ -32,7 +32,7 @@ const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTim
             {posts.map(post => (
                 <div class="art-item" data-album={post.data.album} data-date={post.data.date.getTime()}>
                     <div class="post-date">{post.data.date.toLocaleDateString('zh-TW')}</div>
-                    <h3 style = "margin-top:0; margin-bottom:0;">{post.data.title}</h3>
+                    <h3 style = "margin-top:0; margin-bottom:0;"><mark style = "background-color: #C3B1E1; color: #4e1c74;">{post.data.title}</mark></h3>
                     <div class="post-body" set:html={post.body} />
                 <hr>
                 </div>
