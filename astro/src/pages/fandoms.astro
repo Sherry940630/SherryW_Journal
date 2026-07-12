@@ -1,10 +1,6 @@
 ---
 import BookLayout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
-
-import { getCollection } from 'astro:content';
-const allPosts = await getCollection('FandomMarkdowns');
-
 ---
 <BookLayout>
 <div slot="left">
