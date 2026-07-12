@@ -27,4 +27,4 @@ comments:
 <br><br>
 即使你意志力夠強大，忍住了，他們也會因為你表現出這個難以理解的行為而判斷你「不適任」、「無法溝通」。沒有人知道你經歷多少痛苦只為了免於更大的災難，但如果知道了也不一定能同理，只會更加確信你這顆炸彈不能待在他們的環境裡。一顆炸彈沒人去點燃就不會爆炸，但對於不理解的人來說你就是非常危險的東西
 <br>
-<img src="/SherryW_Journal/public/images/Posts/20260628-ShaGeBackroomApology.jpg" width="100%">
+<img src="/SherryW_Journal/astro/public/images/Posts/20260628-ShaGeBackroomApology.jpg" width="100%">
