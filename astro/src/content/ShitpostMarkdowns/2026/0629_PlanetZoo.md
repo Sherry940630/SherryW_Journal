@@ -13,4 +13,4 @@ comments:
 我真的不知道Planet Zoo這糞game怎麼拿到這麼多好評的，我目前遊玩時數才2個多小時已經經歷4個會害進度完全停滯甚至要重開的bug，雖然我才花60塊所以想說算了，但別人到底是怎麼玩這遊戲然後獲得任何遊戲體驗？！
 <br>
 
-<img src="/public/images/Posts/20260628-PlanetZooOnSale.png" width="100%">
+<img src="/SherryW_Journal/public/images/Posts/20260628-PlanetZooOnSale.png" width="100%">

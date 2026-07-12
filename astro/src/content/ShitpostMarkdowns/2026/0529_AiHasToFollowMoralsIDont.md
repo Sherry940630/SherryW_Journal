@@ -6,4 +6,4 @@ album: halfSarcastic
 
 因為AI一定要遵守道德規範，我不用
 
-<img src="/public/images/Posts/laughing-crying.gif" width="100%">
+<img src="/SherryW_Journal/public/images/Posts/laughing-crying.gif" width="100%">
