@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('DrawingMarkdowns');
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout>
+    <div slot="left">
+        <h2>2D畫廊</h2>
+        <label>排序方式&#9</label>
+        <select id="sort-select">
+            <option value="newest">最新</option>
+            <option value="oldest">最舊</option>
+        </select>
+        <br>
+        <label>作品分類&#9</label>
+        <select id="album-select">
+            <option value="all">全部</option>
+            <option value="OC">OC</option>
+            <option value="Ethen">黑歷史漫畫</option>
+        </select>
+        <p>我一開始會學電繪只是因為我某任男友說喜歡繪師女友，我就去學了，當時幾乎都是畫我跟他的短篇Q版漫畫，偶爾設計一些OC。分手後就幾乎沒在畫了，但偶爾還是會把當初設計的OC重繪，看看自己進步多少。<br><br>
+        有買過wacom電繪板，但可能我手眼協調度極差，所以最終還是習慣在手機版ibisPaint指繪。為了做Unity也有學Aseprite像素動畫。
+        </p>
+    </div>
+
+    <div slot="right">
+        <div id="posts-container">
+            {posts.map(post => (
+                <div class="art-item" data-album={post.data.album} data-date={post.data.date.getTime()}>
+                    <div class="post-date">{post.data.date.toLocaleDateString('zh-TW')}</div>
+                    <h3 style = "margin-top:0; margin-bottom:0;">{post.data.title}</h3>
+                    <div class="post-body" set:html={post.body} />
+                <hr>
+                </div>
+            ))}
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const albumSelect = document.getElementById('album-select') as HTMLSelectElement;
+    const container = document.getElementById('posts-container');
+
+    function applyFilters() {
+        const album = albumSelect.value;
+        const sort = sortSelect.value;
+        const items = Array.from(container.querySelectorAll('.art-item')) as HTMLElement[];
+
+        items.forEach(item => {
+            const match = album === 'all' || item.dataset.album === album;
+            item.style.display = match ? 'block' : 'none';
+        });
+
+        const visible = items.filter(i => i.style.display !== 'none');
+        visible.sort((a, b) => {
+            const da = Number(a.dataset.date);
+            const db = Number(b.dataset.date);
+            return sort === 'newest' ? db - da : da - db;
+        });
+        visible.forEach(item => container.appendChild(item));
+    }
+
+    sortSelect.addEventListener('change', applyFilters);
+    albumSelect.addEventListener('change', applyFilters);
+    applyFilters();
+</script>

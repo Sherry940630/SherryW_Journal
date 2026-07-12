@@ -15,6 +15,18 @@ const ShitpostMarkdowns = defineCollection({
     }),
 });
 
+const DrawingMarkdowns = defineCollection({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/2dDrawingsMarkdowns" }),
+    schema: z.object({
+        title: z.string(),
+        date: z.date(),
+        album: z.string().optional(),
+        images: z.array(z.string()).optional(),
+    }),
+});
+
+
 export const collections = {
     ShitpostMarkdowns,
+    DrawingMarkdowns,
 };
