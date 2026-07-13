@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('ModelsMarkdowns');
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout>
+    <div slot="left">
+        <h2>3D展示櫃</h2>
+        <label>排序方式&#9</label>
+        <select id="sort-select">
+            <option value="oldest">最舊</option>
+            <option value="newest">最新</option>
+        </select>
+        <br>
+        <label>作品分類&#9</label>
+        <select id="album-select">
+            <option value="all">全部</option>
+            <option value="FollowedTutorial">跟著網路教學做的</option>
+        </select>
+        <p>我2024年在嘗試做3D的Unity遊戲，代表我要學基礎3D建模。<br><br>
+        但我發現我還是比較習慣2D開發，就暫時停滯進度了。<br><br>
+        我現有的專案只有3個，甜甜圈是跟著教學做的，另外兩個我自己做的根本都沒做完。有一張椅子沒截圖到，因為我只做出兩隻腳就刪掉了。
+        </p>
+    </div>
+
+    <div slot="right">
+        <div id="posts-container">
+            {posts.map(post => (
+                <div class="art-item" data-album={post.data.album} data-date={post.data.date.getTime()}>
+                    <div class="post-date">{post.data.date.toLocaleDateString('zh-TW')}</div>
+                    <h3 style = "margin-top:0; margin-bottom:0;"><mark style = "background-color: #C3B1E1; color: #4e1c74;">{post.data.title}</mark></h3>
+                    <div class="post-body" set:html={post.body} />
+                <hr>
+                </div>
+            ))}
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const albumSelect = document.getElementById('album-select') as HTMLSelectElement;
+    const container = document.getElementById('posts-container');
+
+    function applyFilters() {
+        const album = albumSelect.value;
+        const sort = sortSelect.value;
+        const items = Array.from(container.querySelectorAll('.art-item')) as HTMLElement[];
+
+        items.forEach(item => {
+            const match = album === 'all' || item.dataset.album === album;
+            item.style.display = match ? 'block' : 'none';
+        });
+
+        const visible = items.filter(i => i.style.display !== 'none');
+        visible.sort((a, b) => {
+            const da = Number(a.dataset.date);
+            const db = Number(b.dataset.date);
+            return sort === 'newest' ? db - da : da - db;
+        });
+        visible.forEach(item => container.appendChild(item));
+    }
+
+    sortSelect.addEventListener('change', applyFilters);
+    albumSelect.addEventListener('change', applyFilters);
+    applyFilters();
+</script>
