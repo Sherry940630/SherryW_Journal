@@ -556,6 +556,7 @@ body.light-mode .comment-content
 {
     height: 45px;
     width: 45px;
+    max-width: 100%;
     object-fit: cover;
     cursor: pointer;
     transition: 0.2s;
