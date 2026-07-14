@@ -509,3 +509,60 @@ body.light-mode .comment-content
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     background: white;
 }
+
+/* ===== Tier List ===== */
+
+.tierlist
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    font-size: 14px;
+}
+
+.tier-row
+{
+    display: flex;
+    align-items: stretch;
+    min-height: 50px;
+}
+
+.tier-label
+{
+    width: 28px;
+    min-width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    flex-shrink: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.tier-items
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    background: rgba(0,0,0,0.1);
+    flex: 1;
+
+}
+
+.tier-item img
+{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tier-item img:hover
+{
+    border-color: #ca6d9a;
+    opacity: 1;
+}

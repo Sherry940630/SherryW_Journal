@@ -1,19 +1,108 @@
 ---
 import BookLayout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
+
+const tiers = [
+    {
+        label: "現深坑",
+        color: "#ff7f7f",
+        items: [
+            { title: "進擊的巨人", img: "images/Posts/TierLists/Logos/Aot.jpg", anchor: "aot" },
+            { title: "Minecraft", img: "images/Posts/TierLists/Logos/Minecraft.jpg", anchor: "minecraft" },
+            { title: "Breaking Bad", img: "images/Posts/TierLists/Logos/BreakingBad.gif", anchor: "breaking-bad" },
+            { title: "Mouthwashing", img: "images/Posts/TierLists/Logos/Mouthwashing.jpg", anchor: "mouthwashing" },
+            { title: "Yandere Simulator", img: "images/Posts/TierLists/Logos/YanSim.jpg", anchor: "yan-sim" },
+            { title: "Kairosoft遊戲", img: "images/Posts/TierLists/Logos/Kairosoft.jpg", anchor: "kairosoft" },
+            { title: "Vampire Survivors", img: "images/Posts/TierLists/Logos/VampireSurvivors.jpg", anchor: "vampire-survivors" },
+            { title: "Dave The Diver", img: "images/Posts/TierLists/Logos/DaveTheDiver.jpg", anchor: "dave-the-diver" },
+        ]
+    },
+    {
+        label: "曾深坑",
+        color: "#ffbf7f",
+        items: [
+            { title: "South Park", img: "images/Posts/TierLists/Logos/SouthPark.jpg", anchor: "south-park" },
+            { title: "Smiling Friends", img: "images/Posts/TierLists/Logos/SmilingFriends.jpg", anchor: "smiling-friends" },
+            { title: "Beavis & Butthead", img: "images/Posts/TierLists/Logos/Beavis.jpg", anchor: "beavis" },
+            { title: "Bojack Horseman", img: "images/Posts/TierLists/Logos/Bojack.jpg", anchor: "bojack" },
+            { title: "Aqua Teen Hunger Force", img: "images/Posts/TierLists/Logos/Athf.jpg", anchor: "athg" },
+            { title: "Archer", img: "images/Posts/TierLists/Logos/Archer.jpg", anchor: "archer" },
+            { title: "Community", img: "images/Posts/TierLists/Logos/Community.jpg", anchor: "community" },
+            { title: "貓咪大戰爭", img: "images/Posts/TierLists/Logos/BattleCats.jpg", anchor: "battle-cats" },
+            { title: "F is For Family", img: "images/Posts/TierLists/Logos/FForFamily.jpg", anchor: "f-for-family" },
+            { title: "惡狼遊戲", img: "images/Posts/TierLists/Logos/WolfGame.png", anchor: "wolf-game" },
+            { title: "Regular Show", img: "images/Posts/TierLists/Logos/RegularShow.jpg", anchor: "regular-show" },
+            { title: "Futurama", img: "images/Posts/TierLists/Logos/Futurama.png", anchor: "futurama" },
+            { title: "King of the Hill", img: "images/Posts/TierLists/Logos/Koth.jpg", anchor: "koth" },
+            { title: "American Dad", img: "images/Posts/TierLists/Logos/AmericanDad.jpg", anchor: "american-dad" },
+            { title: "Family Guy", img: "images/Posts/TierLists/Logos/FamilyGuy.jpg", anchor: "family-guy" },
+            { title: "元氣騎士", img: "images/Posts/TierLists/Logos/SoulKnight.png", anchor: "soul-knight" },
+            { title: "Plants vs Zombies", img: "images/Posts/TierLists/Logos/Pvz.jpg", anchor: "pvz" },
+            { title: "Adventure Time", img: "images/Posts/TierLists/Logos/AdventureTime.jpg", anchor: "adventure-time" },
+            { title: "The Simpsons", img: "images/Posts/TierLists/Logos/Simpsons.jpg", anchor: "simpsons" },
+            { title: "Five Nights At Freddy's", img: "images/Posts/TierLists/Logos/Fnaf.jpg", anchor: "fnaf" },
+            { title: "Teen Titans", img: "images/Posts/TierLists/Logos/TeenTitans.jpg", anchor: "teen-titans" },
+            { title: "The Amazing World of Gumball", img: "images/Posts/TierLists/Logos/Gumball.gif", anchor: "gumball" },
+            { title: "死亡筆記本", img: "images/Posts/TierLists/Logos/DeathNote.jpg", anchor: "death-note" },
+            { title: "Chowder", img: "images/Posts/TierLists/Logos/Chowder.jpg", anchor: "chowder" },
+            { title: "Total Drama", img: "images/Posts/TierLists/Logos/TotalDrama.jpg", anchor: "total-drama" },
+            { title: "Clone High", img: "images/Posts/TierLists/Logos/CloneHigh.jpg", anchor: "clone-high" },
+        ]
+    },
+    {
+        label: "淺坑",
+        color: "#ffff7f",
+        items: [
+            { title: "Project Zomboid", img: "images/Posts/TierLists/Logos/ProjectZomboid.jpg", anchor: "project-zomboid" },
+            { title: "遊戲王", img: "images/Posts/TierLists/Logos/YuGiOh.jpg", anchor: "yu-gi-oh" },
+            { title: "The Forest", img: "images/Posts/TierLists/Logos/TheForest.jpg", anchor: "the-forest" },
+            { title: "Ace Attorney", img: "images/Posts/TierLists/Logos/AceAttorney.jpg", anchor: "ace-attorney" },
+            { title: "Boondocks", img: "images/Posts/TierLists/Logos/Boondocks.jpg", anchor: "boondocks" },
+            { title: "霹靂布袋戲", img: "images/Posts/TierLists/Logos/PiliPuppetry.jpg", anchor: "pili-puppetry" },
+        ]
+    },
+    {
+        label: "已退坑",
+        color: "#7fff7f",
+        items: [
+            { title: "謊言遊戲", img: "images/Posts/TierLists/Logos/UsotsukiGame.png", anchor: "usotsuki-game" },
+            { title: "牛奶巧克力", img: "images/Posts/TierLists/Logos/MilkChoco.jpg", anchor: "milk-choco" },
+            { title: "火影忍者", img: "images/Posts/TierLists/Logos/Naruto.jpg", anchor: "naruto" },
+            { title: "第五人格", img: "images/Posts/TierLists/Logos/Idv.jpg", anchor: "idv" },
+        ]
+    },
+    {
+        label: "待入坑",
+        color: "#ff7f7f",
+        items: [
+            { title: "Hollow Knight", img: "images/Posts/TierLists/Logos/HollowKnight.jpg", anchor: "hollow-knight" },
+            { title: "The Amazing Digital Circus", img: "images/Posts/TierLists/Logos/DigitalCircus.jpg", anchor: "digital-circus" },
+        ]
+    },
+];
 ---
+
 <BookLayout>
 <div slot="left">
-    <h2>坑單一覽</h2>
-    影視深坑<br>
-    ► <a href="#breaking-bad">Breaking Bad</a><br>
-    ► <a href="#south-park">South Park</a><br>
-    ► <a href="#bojack">Bojack Horseman</a><br>
-    ► <a href="#beavis">Beavis & Butthead</a><br>
-    遊戲深坑<br>
-    ► <a href="#minecraft">Minecraft</a><br>
-    ► <a href="#kairosoft">Kairosoft遊戲</a><br>
-    ► <a href="#wasabi">Wasabi Studio遊戲</a><br>
+    <h2>影視與遊戲坑單</h2>
+    <div class="tierlist">
+        {tiers.map(tier => (
+            <div class="tier-row">
+                <div class="tier-label" style={`background:${tier.color}`}>{tier.label}</div>
+                <div class="tier-items">
+                    {tier.items.map(item => (
+                        <a href={`#${item.anchor}`} class="tier-item" title={item.title}>
+                            <img src={`${base}${item.img}`} alt={item.title}>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <p>
+    ●註：「曾深坑」和「已退坑」的差別在於——前者像是現在還會偶爾聯絡的老朋友，後者像是已經分手多年沒打算復合的前任。
+    </p>
 </div>
 
 <div slot="right">
