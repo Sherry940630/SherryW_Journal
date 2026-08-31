@@ -561,10 +561,70 @@ body.light-mode .comment-content
     cursor: pointer;
     transition: 0.2s;
     display: block;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 2px;
 }
 
 .tier-item img:hover
 {
-    border-color: #ca6d9a;
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+
+.img-border
+{
+    display: block;
+    padding: 3px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    line-height: 0;
+}
+
+.img-border img
+{
+    display: block;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.img-border:hover img
+{
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.tier-item
+{
+    position: relative;
+}
+
+.tier-item::after
+{
+    content: attr(data-title);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    transition-delay: 0.1s;
+    z-index: 50;
+}
+
+.tier-item:hover::after
+{
     opacity: 1;
 }

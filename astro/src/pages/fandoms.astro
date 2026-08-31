@@ -1,82 +1,117 @@
 ---
 import BookLayout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
+const typeColors =
+{
+    movie: "#ffac39",
+    cartoon: "#9bea97",
+    anime: "#ff8fc7",
+    game: "#5da8f2",
+    series: "#f4d03f",
+};
+
+
+function getBorderStyle(item)
+{
+    const types = Array.isArray(item.type) ? item.type : [item.type];
+    const colors = types.map(t => typeColors[t] || typeColors.other);
+    const gradient = colors.length === 1
+        ? colors[0]
+        : `linear-gradient(45deg, ${colors.join(", ")})`;
+    return `background: ${gradient};`;
+}
 
 const tiers = [
     {
         label: "現深坑",
         color: "#ff7f7f",
         items: [
-            { title: "進擊的巨人", img: "images/Posts/TierLists/Logos/Aot.jpg", anchor: "aot" },
-            { title: "Minecraft", img: "images/Posts/TierLists/Logos/Minecraft.jpg", anchor: "minecraft" },
-            { title: "Breaking Bad", img: "images/Posts/TierLists/Logos/BreakingBad.gif", anchor: "breaking-bad" },
-            { title: "Mouthwashing", img: "images/Posts/TierLists/Logos/Mouthwashing.jpg", anchor: "mouthwashing" },
-            { title: "Yandere Simulator", img: "images/Posts/TierLists/Logos/YanSim.jpg", anchor: "yan-sim" },
-            { title: "Kairosoft遊戲", img: "images/Posts/TierLists/Logos/Kairosoft.jpg", anchor: "kairosoft" },
-            { title: "Vampire Survivors", img: "images/Posts/TierLists/Logos/VampireSurvivors.jpg", anchor: "vampire-survivors" },
-            { title: "Dave The Diver", img: "images/Posts/TierLists/Logos/DaveTheDiver.jpg", anchor: "dave-the-diver" },
+            { title: "進擊的巨人", img: "images/Posts/TierLists/Logos/Aot.jpg", anchor: "aot", type: "anime"},
+            { title: "Minecraft", img: "images/Posts/TierLists/Logos/Minecraft.jpg", anchor: "minecraft", type: "game"},
+            { title: "遊戲王", img: "images/Posts/TierLists/Logos/YuGiOh.jpg", anchor: "yu-gi-oh", type: "game"},
+            { title: "無職轉生", img: "images/Posts/TierLists/Logos/MushokuTensei.jpg", anchor: "mushoku-tensei", type: "anime"},
+            { title: "Breaking Bad", img: "images/Posts/TierLists/Logos/BreakingBad.gif", anchor: "breaking-bad", type: "series"},
+            { title: "Mouthwashing", img: "images/Posts/TierLists/Logos/Mouthwashing.jpg", anchor: "mouthwashing", type: "game"},
+            { title: "Yandere Simulator", img: "images/Posts/TierLists/Logos/YanSim.jpg", anchor: "yan-sim", type: "game"},
+            { title: "Kairosoft遊戲", img: "images/Posts/TierLists/Logos/Kairosoft.jpg", anchor: "kairosoft", type: "game"},
+            { title: "Vampire Survivors", img: "images/Posts/TierLists/Logos/VampireSurvivors.jpg", anchor: "vampire-survivors", type: "game"},
+            { title: "Dave The Diver", img: "images/Posts/TierLists/Logos/DaveTheDiver.jpg", anchor: "dave-the-diver", type: "game"},
         ]
     },
     {
         label: "曾深坑",
         color: "#ffbf7f",
         items: [
-            { title: "South Park", img: "images/Posts/TierLists/Logos/SouthPark.jpg", anchor: "south-park" },
-            { title: "Smiling Friends", img: "images/Posts/TierLists/Logos/SmilingFriends.jpg", anchor: "smiling-friends" },
-            { title: "Beavis & Butthead", img: "images/Posts/TierLists/Logos/Beavis.jpg", anchor: "beavis" },
-            { title: "Bojack Horseman", img: "images/Posts/TierLists/Logos/Bojack.jpg", anchor: "bojack" },
-            { title: "Aqua Teen Hunger Force", img: "images/Posts/TierLists/Logos/Athf.jpg", anchor: "athg" },
-            { title: "Archer", img: "images/Posts/TierLists/Logos/Archer.jpg", anchor: "archer" },
-            { title: "Community", img: "images/Posts/TierLists/Logos/Community.jpg", anchor: "community" },
-            { title: "貓咪大戰爭", img: "images/Posts/TierLists/Logos/BattleCats.jpg", anchor: "battle-cats" },
-            { title: "F is For Family", img: "images/Posts/TierLists/Logos/FForFamily.jpg", anchor: "f-for-family" },
-            { title: "惡狼遊戲", img: "images/Posts/TierLists/Logos/WolfGame.png", anchor: "wolf-game" },
-            { title: "Regular Show", img: "images/Posts/TierLists/Logos/RegularShow.jpg", anchor: "regular-show" },
-            { title: "Futurama", img: "images/Posts/TierLists/Logos/Futurama.png", anchor: "futurama" },
-            { title: "King of the Hill", img: "images/Posts/TierLists/Logos/Koth.jpg", anchor: "koth" },
-            { title: "American Dad", img: "images/Posts/TierLists/Logos/AmericanDad.jpg", anchor: "american-dad" },
-            { title: "Family Guy", img: "images/Posts/TierLists/Logos/FamilyGuy.jpg", anchor: "family-guy" },
-            { title: "元氣騎士", img: "images/Posts/TierLists/Logos/SoulKnight.png", anchor: "soul-knight" },
-            { title: "Plants vs Zombies", img: "images/Posts/TierLists/Logos/Pvz.jpg", anchor: "pvz" },
-            { title: "Adventure Time", img: "images/Posts/TierLists/Logos/AdventureTime.jpg", anchor: "adventure-time" },
-            { title: "The Simpsons", img: "images/Posts/TierLists/Logos/Simpsons.jpg", anchor: "simpsons" },
-            { title: "Five Nights At Freddy's", img: "images/Posts/TierLists/Logos/Fnaf.jpg", anchor: "fnaf" },
-            { title: "Teen Titans", img: "images/Posts/TierLists/Logos/TeenTitans.jpg", anchor: "teen-titans" },
-            { title: "The Amazing World of Gumball", img: "images/Posts/TierLists/Logos/Gumball.gif", anchor: "gumball" },
-            { title: "死亡筆記本", img: "images/Posts/TierLists/Logos/DeathNote.jpg", anchor: "death-note" },
-            { title: "Chowder", img: "images/Posts/TierLists/Logos/Chowder.jpg", anchor: "chowder" },
-            { title: "Total Drama", img: "images/Posts/TierLists/Logos/TotalDrama.jpg", anchor: "total-drama" },
-            { title: "Clone High", img: "images/Posts/TierLists/Logos/CloneHigh.jpg", anchor: "clone-high" },
+            { title: "South Park", img: "images/Posts/TierLists/Logos/SouthPark.jpg", anchor: "south-park", type: "cartoon"},
+            { title: "Smiling Friends", img: "images/Posts/TierLists/Logos/SmilingFriends.jpg", anchor: "smiling-friends", type: "cartoon"},
+            { title: "Beavis & Butthead", img: "images/Posts/TierLists/Logos/Beavis.jpg", anchor: "beavis", type: "cartoon"},
+            { title: "Bojack Horseman", img: "images/Posts/TierLists/Logos/Bojack.jpg", anchor: "bojack", type: "cartoon"},
+            { title: "Aqua Teen Hunger Force", img: "images/Posts/TierLists/Logos/Athf.jpg", anchor: "athg", type: "cartoon"},
+            { title: "Archer", img: "images/Posts/TierLists/Logos/Archer.jpg", anchor: "archer", type: "cartoon"},
+            { title: "Community", img: "images/Posts/TierLists/Logos/Community.jpg", anchor: "community", type: "series"},
+            { title: "貓咪大戰爭", img: "images/Posts/TierLists/Logos/BattleCats.jpg", anchor: "battle-cats", type: "game" },
+            { title: "F is For Family", img: "images/Posts/TierLists/Logos/FForFamily.jpg", anchor: "f-for-family", type: "cartoon"},
+            { title: "惡狼遊戲", img: "images/Posts/TierLists/Logos/WolfGame.png", anchor: "wolf-game", type: "game"},
+            { title: "來自深淵", img: "images/Posts/TierLists/Logos/MadeInAbyss.png", anchor: "made-in-abyss.png", type: "anime"},
+            { title: "Regular Show", img: "images/Posts/TierLists/Logos/RegularShow.jpg", anchor: "regular-show", type: "cartoon"},
+            { title: "Futurama", img: "images/Posts/TierLists/Logos/Futurama.png", anchor: "futurama", type: "cartoon"},
+            { title: "King of the Hill", img: "images/Posts/TierLists/Logos/Koth.jpg", anchor: "koth", type: "cartoon"},
+            { title: "American Dad", img: "images/Posts/TierLists/Logos/AmericanDad.jpg", anchor: "american-dad", type: "cartoon"},
+            { title: "Family Guy", img: "images/Posts/TierLists/Logos/FamilyGuy.jpg", anchor: "family-guy", type: "cartoon"},
+            { title: "元氣騎士", img: "images/Posts/TierLists/Logos/SoulKnight.png", anchor: "soul-knight", type: "game"},
+            { title: "Plants vs Zombies", img: "images/Posts/TierLists/Logos/Pvz.jpg", anchor: "pvz", type: "game"},
+            { title: "動物森友會", img: "images/Posts/TierLists/Logos/AnimalCrossing.jpg", anchor: "animal-crossing", type: "game"},
+            { title: "Adventure Time", img: "images/Posts/TierLists/Logos/AdventureTime.jpg", anchor: "adventure-time", type: "cartoon"},
+            { title: "The Simpsons", img: "images/Posts/TierLists/Logos/Simpsons.jpg", anchor: "simpsons", type: "cartoon"},
+            { title: "Five Nights At Freddy's", img: "images/Posts/TierLists/Logos/Fnaf.jpg", anchor: "fnaf", type: ["game", "movie"]},
+            { title: "Teen Titans", img: "images/Posts/TierLists/Logos/TeenTitans.jpg", anchor: "teen-titans", type: "cartoon"},
+            { title: "The Amazing World of Gumball", img: "images/Posts/TierLists/Logos/Gumball.gif", anchor: "gumball", type: "cartoon"},
+            { title: "死亡筆記本", img: "images/Posts/TierLists/Logos/DeathNote.jpg", anchor: "death-note", type: "anime"},
+            { title: "Chowder", img: "images/Posts/TierLists/Logos/Chowder.jpg", anchor: "chowder", type: "cartoon"},
+            { title: "Total Drama", img: "images/Posts/TierLists/Logos/TotalDrama.jpg", anchor: "total-drama", type: "cartoon"},
+            { title: "Clone High", img: "images/Posts/TierLists/Logos/CloneHigh.jpg", anchor: "clone-high", type: "cartoon"},
+            { title: "Jeffrey Dahmer", img: "images/Posts/TierLists/Logos/JeffreyDahmer.jpg", anchor: "jeffrey-dahmer", type: "series"},
         ]
     },
     {
         label: "淺坑",
         color: "#ffff7f",
         items: [
-            { title: "Project Zomboid", img: "images/Posts/TierLists/Logos/ProjectZomboid.jpg", anchor: "project-zomboid" },
-            { title: "遊戲王", img: "images/Posts/TierLists/Logos/YuGiOh.jpg", anchor: "yu-gi-oh" },
-            { title: "The Forest", img: "images/Posts/TierLists/Logos/TheForest.jpg", anchor: "the-forest" },
-            { title: "Ace Attorney", img: "images/Posts/TierLists/Logos/AceAttorney.jpg", anchor: "ace-attorney" },
-            { title: "Boondocks", img: "images/Posts/TierLists/Logos/Boondocks.jpg", anchor: "boondocks" },
-            { title: "霹靂布袋戲", img: "images/Posts/TierLists/Logos/PiliPuppetry.jpg", anchor: "pili-puppetry" },
+            { title: "Project Zomboid", img: "images/Posts/TierLists/Logos/ProjectZomboid.jpg", anchor: "project-zomboid", type: "game"},
+            { title: "不存在的你和我", img: "images/Posts/TierLists/Logos/Lilith.jpg", anchor: "lilith", type: "game"},
+            { title: "The Forest", img: "images/Posts/TierLists/Logos/TheForest.jpg", anchor: "the-forest", type: "game"},
+            { title: "Ace Attorney", img: "images/Posts/TierLists/Logos/AceAttorney.jpg", anchor: "ace-attorney", type: "game"},
+            { title: "Boondocks", img: "images/Posts/TierLists/Logos/Boondocks.jpg", anchor: "boondocks", type: "cartoon"},
+            { title: "霹靂布袋戲", img: "images/Posts/TierLists/Logos/PiliPuppetry.jpg", anchor: "pili-puppetry", type: "series"},
+            { title: "心跳文學部", img: "images/Posts/TierLists/Logos/DokiDokiLiteratureClub.jpg", anchor: "doki-doki-literature-club", type: "game"},
+            { title: "Murder Drones", img: "images/Posts/TierLists/Logos/MurderDrones.jpg", anchor: "murder-drones", type: "cartoon"},
+            { title: "漢尼拔", img: "images/Posts/TierLists/Logos/Hannibal.png", anchor: "hannibal", type: "movie"},
+            { title: "三體", img: "images/Posts/TierLists/Logos/3Body.png", anchor: "3Body", type: "series"},
         ]
     },
     {
         label: "已退坑",
         color: "#7fff7f",
         items: [
-            { title: "謊言遊戲", img: "images/Posts/TierLists/Logos/UsotsukiGame.png", anchor: "usotsuki-game" },
-            { title: "牛奶巧克力", img: "images/Posts/TierLists/Logos/MilkChoco.jpg", anchor: "milk-choco" },
-            { title: "火影忍者", img: "images/Posts/TierLists/Logos/Naruto.jpg", anchor: "naruto" },
-            { title: "第五人格", img: "images/Posts/TierLists/Logos/Idv.jpg", anchor: "idv" },
+            { title: "謊言遊戲", img: "images/Posts/TierLists/Logos/UsotsukiGame.png", anchor: "usotsuki-game", type: "game"},
+            { title: "牛奶巧克力", img: "images/Posts/TierLists/Logos/MilkChoco.jpg", anchor: "milk-choco", type: "game"},
+            { title: "火影忍者", img: "images/Posts/TierLists/Logos/Naruto.jpg", anchor: "naruto", type: "anime"},
+            { title: "鬼滅之刃", img: "images/Posts/TierLists/Logos/DemonSlayer.jpg", anchor: "demon-slayer.png", type: "anime"},
+            { title: "JoJo", img: "images/Posts/TierLists/Logos/JoJo.jpg", anchor: "jojo", type: "anime"},
+            { title: "干物妹小埋", img: "images/Posts/TierLists/Logos/Umaru.jpg", anchor: "umaru", type: "anime"},
+            { title: "第五人格", img: "images/Posts/TierLists/Logos/Idv.jpg", anchor: "idv", type: "game"},
+            { title: "復仇者聯盟", img: "images/Posts/TierLists/Logos/Avengers.jpg", anchor: "avengers", type: "movie"},
         ]
     },
     {
         label: "待入坑",
         color: "#ff7f7f",
         items: [
-            { title: "Hollow Knight", img: "images/Posts/TierLists/Logos/HollowKnight.jpg", anchor: "hollow-knight" },
-            { title: "The Amazing Digital Circus", img: "images/Posts/TierLists/Logos/DigitalCircus.jpg", anchor: "digital-circus" },
+            { title: "Hollow Knight", img: "images/Posts/TierLists/Logos/HollowKnight.jpg", anchor: "hollow-knight", type: "game"},
+            { title: "The Amazing Digital Circus", img: "images/Posts/TierLists/Logos/DigitalCircus.jpg", anchor: "digital-circus", type: "cartoon"},
+            { title: "我的英雄學院", img: "images/Posts/TierLists/Logos/mha.jpg", anchor: "mha", type: "anime"},
+            { title: "86不存在的戰區", img: "images/Posts/TierLists/Logos/86.jpg", anchor: "86", type: "anime"},
+            { title: "葬送的芙莉蓮", img: "images/Posts/TierLists/Logos/Frieren.png", anchor: "frieren", type: "anime"},
         ]
     },
 ];
@@ -90,9 +125,12 @@ const tiers = [
             <div class="tier-row">
                 <div class="tier-label" style={`background:${tier.color}`}>{tier.label}</div>
                 <div class="tier-items">
-                    {tier.items.map(item => (
-                        <a href={`#${item.anchor}`} class="tier-item" title={item.title}>
-                            <img src={`${base}${item.img}`} alt={item.title}>
+                    {tier.items.map(item =>
+                    (
+                        <a href={`#${item.anchor}`} class="tier-item" data-title={item.title}>
+                            <span class="img-border" style={getBorderStyle(item)}>
+                                <img src={`${base}${item.img}`} alt={item.title}>
+                            </span>
                         </a>
                     ))}
                 </div>
@@ -108,13 +146,12 @@ const tiers = [
 <div slot="right">
     點擊標題可縮小/展開。
 
-    <div class="expand-item" id="breaking-bad">
-        <button class="expand-btn">Breaking Bad</button>
+    <div class="expand-item" id="death-note">
+        <button class="expand-btn">死亡筆記本</button>
         <div class="expand-content-wrapper show">
             <div class="expand-content-top"></div>
             <div class="expand-content-mid">
-                <img src={`${base}images/Posts/TierLists/BreakingBadTierList.png`} width="100%">
-                <p>心得</p>
+                <p>主推：L<br>曾經是瘋狂L夢女（超級黑歷史）。</p>
                 <button class="collapse-btn">▲ 縮小</button>
             </div>
             <div class="expand-content-bottom"></div>
@@ -123,6 +160,18 @@ const tiers = [
 
     <div class="expand-item" id="south-park">
         <button class="expand-btn">South Park</button>
+        <div class="expand-content-wrapper show">
+            <div class="expand-content-top"></div>
+            <div class="expand-content-mid">
+                <p>主推Cartman（阿ㄆㄧㄚˇ）<br>雖然我覺得現代南方公園有點把他當劇本工具💀</p>
+                <button class="collapse-btn">▲ 縮小</button>
+            </div>
+            <div class="expand-content-bottom"></div>
+        </div>
+    </div>
+
+    <div class="expand-item" id="breaking-bad">
+        <button class="expand-btn">Breaking Bad</button>
         <div class="expand-content-wrapper show">
             <div class="expand-content-top"></div>
             <div class="expand-content-mid">
