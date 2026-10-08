@@ -12,6 +12,16 @@ const base = import.meta.env.BASE_URL;
 </head>
 
 <body>
+    <script is:inline>
+        try 
+        {
+            if (localStorage.getItem("theme") === "light") 
+            {
+                document.body.classList.add("light-mode");
+            }
+        } catch (e) {}
+    </script>
+
     <div class="book">
         <div class="book-ui">
             <div class="page left" id="leftPage">
@@ -96,8 +106,13 @@ const base = import.meta.env.BASE_URL;
 
         //主題切換
         const themeToggle = document.getElementById("theme-toggle");
-        themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("light-mode");
+        themeToggle.addEventListener("click", () => 
+        {
+            const isLight = document.body.classList.toggle("light-mode");
+            try 
+            {
+                localStorage.setItem("theme", isLight ? "light" : "dark");
+            } catch (e) {}
         });
 
         //Expand/collapse blocks

@@ -1,14 +1,97 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
+
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('ShitpostEnMarkdowns');
+
+//預設按最新排序
+const posts = allPosts.sort((a, b) => 
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+//自動從所有貼文抓出所有相簿名稱
+const albums = [...new Set(posts.map(p => p.data.album))];
 ---
 
 <Layout>
     <div slot="left">
-    施工中
+        <h2>廢文博物館(EN)</h2>
+        <p>篩選器：</p>
+
+        <label>排序方式</label><br>
+        <select id="sort-select">
+            <option value="newest">最新發布</option>
+            <option value="oldest">最舊發布</option>
+        </select>
+
+        <br><br>
+
+        <label>相簿</label><br>
+        <select id="album-select">
+            <option value="all">所有相簿</option>
+        </select>
     </div>
 
-    <div slot="right">
-    施工中
+<div slot="right">
+    <div id="posts-container">
+    {posts.map((post) => (
+        <div class="expand-item" data-album={post.data.album} data-date={post.data.date.getTime()}>
+            <div class="post-date">{post.data.date.toLocaleDateString('zh-TW')}</div>
+            <button class="expand-btn">{post.data.title}</button>
+            <div class="expand-content-wrapper show">
+                <div class="expand-content-top"></div>
+                <div class="expand-content-mid">
+                    <div class="post-body" set:html={post.body} />
+                    {post.data.comments && post.data.comments.map(comment => (
+                        <div class="comment-block">
+                            <span class="comment-arrow">↪</span>
+                            <div class="comment-content">
+                                <strong>{comment.author}</strong>
+                                {comment.date && <span class="comment-date">{comment.date}</span>}
+                                <p set:html={comment.text}></p>
+                            </div>
+                        </div>
+                    ))}
+                    <button class="collapse-btn">▲ 縮小</button>
+                </div>
+                <div class="expand-content-bottom"></div>
+            </div>
+        </div>
+    ))}
     </div>
+</div>
+
 </Layout>
+
+<script>
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const albumSelect = document.getElementById('album-select') as HTMLSelectElement;
+    const container = document.getElementById('posts-container');
+
+    function applyFilters() {
+        const album = albumSelect.value;
+        const sort = sortSelect.value;
+
+        const items = Array.from(container.querySelectorAll('.expand-item')) as HTMLElement[];
+
+        // 篩選相簿
+        items.forEach(item => {
+            const match = album === 'all' || item.dataset.album === album;
+            item.style.display = match ? 'block' : 'none';
+        });
+
+        // 排序
+        const visible = items.filter(i => i.style.display !== 'none');
+        visible.sort((a, b) => {
+            const da = Number(a.dataset.date);
+            const db = Number(b.dataset.date);
+            return sort === 'newest' ? db - da : da - db;
+        });
+        visible.forEach(item => container.appendChild(item));
+    }
+
+    sortSelect.addEventListener('change', applyFilters);
+    albumSelect.addEventListener('change', applyFilters);
+    applyFilters();
+</script>

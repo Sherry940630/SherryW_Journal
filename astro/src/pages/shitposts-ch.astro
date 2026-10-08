@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
 
 import { getCollection } from 'astro:content';
-const allPosts = await getCollection('ShitpostMarkdowns');
+const allPosts = await getCollection('ShitpostChMarkdowns');
 
 //預設按最新排序
 const posts = allPosts.sort((a, b) => 
@@ -16,7 +16,7 @@ const albums = [...new Set(posts.map(p => p.data.album))];
 
 <Layout>
     <div slot="left">
-        <h2>廢文博物館</h2>
+        <h2>廢文博物館(中)</h2>
         <p>篩選器：</p>
 
         <label>排序方式</label><br>
